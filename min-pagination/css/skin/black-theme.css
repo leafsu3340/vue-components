@@ -1,0 +1,12 @@
+/* font-size */
+.black-theme .pagination-container .pagination .is-primary {
+  background-color: #418bca;
+  border-color: #418bca;
+}
+.black-theme .pagination-container .pagination > li > a {
+  color: #418bca;
+  cursor: pointer;
+}
+.black-theme .pagination-container .pagination .form-control {
+  color: #418bca;
+}

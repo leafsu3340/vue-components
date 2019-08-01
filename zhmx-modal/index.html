@@ -1,0 +1,160 @@
+<!-- 融资台账明细弹出框 -->
+<div>
+  <!-- 账户台账明细弹出框 modal识别为模态框 fade显示的时候会有淡入淡出效果-->
+  <div class="modal fade zhmx-info-modal" :id="zhmxModalId" tabindex="-1" role="dialog"
+    :class="colorTheme">
+    <!-- 模态框开始 -->
+    <div class="modal-dialog center-modal-dialog" role="document">
+      <div class="modal-content" :style="{'height': contentHeight + 'px'}">
+        <div class="modal-header">
+          <!--header开始  -->
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true" class="zjjk-font icon-cha"></span>
+          </button>
+          <div class="title-container" style="height:20px;">
+            <div style="float:left">
+              <h4>账户详细信息</h4>
+            </div>
+            <div v-if="accountCheck" v-show="!(is_jw==1)" style="float:right">
+              <span class="chaxun export-btn" style="position: absolute;right: 131px;top: 14px;">对账查询</span>
+              <div class="zhmx-datetimepicker" style="opacity: 0 !important;position: absolute;top: 2px;right: 87px;">
+                <date-picker :pickerId="'dzcx'" :labelTitle="''"
+                  :timePickerMinView="3" @dateTimeChange="onDzcxDateChange(arguments[0])"></date-picker>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--header结束  -->
+        <div class="modal-body">
+          <div class="jiange">
+            <p class="like">
+              <span class="leftcolor">开户单位：</span>&nbsp&nbsp
+              <span class="rightcolor" v-bind:title="zhtzmxDetailInfo.organname">{{zhtzmxDetailInfo.organname}}</span>
+            </p>
+            <p class="like">
+              <span class="leftcolor">账号：</span>&nbsp&nbsp
+              <span class="rightcolor" v-bind:title="zhtzmxDetailInfo.account">{{zhtzmxDetailInfo.account}}</span>
+            </p>
+            <p class="like">
+              <span class="leftcolor">开户日期：</span>&nbsp&nbsp
+              <span class="rightcolor" v-bind:title="kpkhrq">{{kpkhrq}}</span>
+            </p>
+          </div>
+          <div class="jiange">
+            <p class="like">
+              <span class="leftcolor">账户名称：</span>
+              <span class="rightcolor" v-bind:title="zhtzmxDetailInfo.account_title">
+                {{zhtzmxDetailInfo.account_title}} </span>
+            </p>
+            <p class="like">
+              <span class="leftcolor">账号名称：</span>
+              <span class="rightcolor" v-bind:title="zhtzmxDetailInfo.account_name">{{zhtzmxDetailInfo.account_name}}
+              </span>
+            </p>
+            <p class="like">
+              <span class="leftcolor">存款方式：</span>
+              <span class="rightcolor" v-bind:title="zhtzmxDetailInfo.account_deposit_name">{{zhtzmxDetailInfo.account_deposit_name}}</span>
+            </p>
+          </div>
+          <div class="jiange">
+            <p class="like">
+              <span class="leftcolor">开户金融机构：</span>
+              <span class="rightcolor" v-bind:title="zhtzmxDetailInfo.bank_name">{{zhtzmxDetailInfo.bank_name}}</span>
+            </p>
+            <p class="like">
+              <span class="leftcolor">开户银行：</span>
+              <span class="rightcolor" v-bind:title="zhtzmxDetailInfo.sub_bank_name">{{zhtzmxDetailInfo.sub_bank_name}}</span>
+            </p>
+            <p class="like">
+              <span class="leftcolor">币种：</span>
+              <span class="rightcolor" v-bind:title="zhtzmxDetailInfo.money_name">{{zhtzmxDetailInfo.money_name}}</span>
+            </p>
+          </div>
+          <div class="jiange">
+            <p class="like">
+              <span class="leftcolor">是否报表范围：</span>
+              <span class="rightcolor" v-bind:title="zhtzmxDetailInfo.is_report_score_name">
+                {{zhtzmxDetailInfo.is_report_score_name}}</span>
+            </p>
+            <p class="like">
+              <span class="leftcolor">监控授权状态：</span>
+              <span class="rightcolor" v-bind:title="zhtzmxDetailInfo.is_accredit_name">{{zhtzmxDetailInfo.is_accredit_name}}</span>
+            </p>
+            <p class="like">
+              <span class="leftcolor">授权日期：</span>
+              <span class="rightcolor" v-bind:title="sqrq">{{sqrq}}</span>
+            </p>
+          </div>
+          <div class="jiange">
+            <p class="like">
+              <span class="leftcolor">银行账户性质：</span>
+              <span class="rightcolor" v-bind:title="zhtzmxDetailInfo.account_prop_name">{{zhtzmxDetailInfo.account_prop_name}}</span>
+            </p>
+            <p class="like">
+              <span class="leftcolor">地区：</span>
+              <span class="rightcolor" v-bind:title="zhtzmxDetailInfo.area_name">{{zhtzmxDetailInfo.area_name}}</span>
+            </p>
+            <p class="like">
+              <span class="leftcolor">使用状态：</span>
+              <span class="rightcolor" v-bind:title="zhtzmxDetailInfo.status_name">{{zhtzmxDetailInfo.status_name}}</span>
+            </p>
+          </div>
+          <div class="jiange">
+            <p class="like">
+              <span class="leftcolor">是否集团账户：</span>
+              <span class="rightcolor" v-bind:title="zhtzmxDetailInfo.is_group_name">{{zhtzmxDetailInfo.is_group_name}}</span>
+            </p>
+            <p class="like">
+              <span class="leftcolor">是否纳入中电财体系：</span>
+              <span class="rightcolor" v-bind:title="zhtzmxDetailInfo.is_gj_dc_name">{{zhtzmxDetailInfo.is_gj_dc_name
+                }}</span>
+            </p>
+            <p class="like">
+              <span class="leftcolor">集团账户级次：</span>
+              <span class="rightcolor" v-bind:title="zhtzmxDetailInfo.jtzh_name">{{zhtzmxDetailInfo.jtzh_name}}</span>
+            </p>
+          </div>
+          <div class="jiange">
+            <p class="like">
+              <span class="leftcolor">销户日期：</span>
+              <span class="rightcolor" v-bind:title="kpxhrq">{{kpxhrq}}</span>
+            </p>
+            <p class="like">
+              <span class="leftcolor">账簿余额对应银行余额：</span>
+              <span class="rightcolor" v-bind:title="zhtzmxDetailInfo.bk_or_ava_name">{{zhtzmxDetailInfo.bk_or_ava_name}}</span>
+            </p>
+            <p class="like">
+              <span class="leftcolor">是否收支两条线账户：</span>
+              <span class="rightcolor" v-bind:title="zhtzmxDetailInfo.is_szltx_name">{{zhtzmxDetailInfo.is_szltx_name}}</span>
+            </p>
+          </div>
+          <div class="jiange">
+            <p class="like">
+              <span class="leftcolor">开户国家：</span>
+              <span class="rightcolor" v-bind:title="zhtzmxDetailInfo.area_name">{{zhtzmxDetailInfo.area_name}}</span>
+            </p>
+            <p class="like">
+              <span class="leftcolor">是否境外账户：</span>
+              <span class="rightcolor" v-bind:title="zhtzmxDetailInfo.is_jwzh_name">{{zhtzmxDetailInfo.is_jwzh_name}}</span>
+            </p>
+            <p class="like">
+              <span class="leftcolor">账户分类：</span>
+              <span class="rightcolor" v-bind:title="zhtzmxDetailInfo.zhfl_caption">{{zhtzmxDetailInfo.zhfl_caption}}</span>
+            </p>
+          </div>
+          <div class="jiange">
+            <p class="like">
+              <span class="leftcolor">所属上级集团账户：</span>
+              <span class="rightcolor" v-bind:title="zhtzmxDetailInfo.paccount_name">{{zhtzmxDetailInfo.paccount_name}}</span>
+            </p>
+            <p class="like">
+              <span class="leftcolor">备注：</span>
+              <span class="rightcolor" v-bind:title="zhtzmxDetailInfo.remark">{{zhtzmxDetailInfo.remark}}</span>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--模态框结束  -->
+</div>

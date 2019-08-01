@@ -1,0 +1,8 @@
+/* font-size */
+.white-theme .datatable-container {
+  display: block;
+}
+.white-theme .datatable-container table.dataTable thead th,
+.white-theme .datatable-container table.dataTable thead td {
+  background-color: #f9f9f9;
+}

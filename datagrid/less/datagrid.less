@@ -1,0 +1,214 @@
+@import "../../../less/variable";
+@import "../../../less/common";
+
+.cell-text-right {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+}
+
+.cell-text-left {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+}
+
+.cell-text-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+}
+
+.datagrid-no-data {
+  position: relative;
+  top: 100px;
+  z-index: 100;
+  text-align: center;
+}
+
+.cell-text-p,
+.tbody-cell-div {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+
+
+/*datagrid覆盖样式*/
+.datagrid-container {
+  width: 100%;
+
+  .datagrid-grid {
+    width: 100%;
+  }
+
+  .datagrid-header .datagrid-cell span,
+  .datagrid-cell,
+  .datagrid-cell .cell-text-p,
+  .datagrid-cell-group,
+  .datagrid-header-rownumber,
+  .datagrid-cell-rownumber {
+    @media @min-width-1024 {
+      font-size: 12px !important;
+    }
+
+    @media @min-width-1600 {
+      font-size: 14px !important;
+    }
+  }
+
+  .datagrid-htable,
+  .datagrid-ftable {
+    color: #363636;
+  }
+
+  .datagrid-btable {
+    color: #666666;
+  }
+
+  .datagrid-header-inner {
+    font-weight: 600;
+    background-color: #f9f9f9;
+  }
+
+  .datagrid-header,
+  .datagrid-toolbar,
+  .datagrid-pager,
+  .datagrid-footer-inner {
+    border-color: #e9e9e9;
+    border-bottom: 2px solid #e9e9e9;
+  }
+
+  .datagrid-cell .cell-text-p {
+    color: #666666;
+    padding: 0 4px;
+  }
+  
+  .datagrid-cell .tree-title {
+  	font-size: 14px;
+  }
+
+  .normal-hight-light {
+    color: #0EA093;
+  }
+
+  .penetrate-highlight {
+    cursor: pointer;
+
+    &:hover {
+      span {
+        color: #ff9c00;
+        text-decoration: underline;
+      }
+    }
+  }
+
+  .datagrid-row-selected {
+    background-color: #ffffde;
+  }
+
+  .propertygrid .datagrid-view1 .datagrid-row-selected {
+    background: #ffffde;
+
+    .cell-text-p {
+      color: #999999;
+    }
+  }
+
+  .datagrid-header td.datagrid-header-over {
+    background: transparent;
+    color: #363636;
+  }
+
+  .datagrid-row-over,
+  .propertygrid .datagrid-view1 .datagrid-row-over {
+    background: #ffffde;
+  }
+
+  .datagrid-cell-group {
+    height: 40px !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .datagrid-body {
+    position: relative;
+  }
+
+  .datagrid-cell {
+    height: 36px !important;
+    padding: 0 8px;
+    line-height: 36px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    vertical-align: middle;
+  }
+  
+  .datagrid-header-row .datagrid-cell {
+  	height: 100% !important;
+  }
+
+  .datagrid-view1 .datagrid-cell {
+    padding: 10px 8px !important;
+    line-height: normal;
+  }
+
+  .datagrid-view2 .tree-hit,
+  .datagrid-view2 .tree-icon,
+  .datagrid-view2 .tree-title {
+    margin: 10px 0px;
+  }
+
+  .datagrid-header-row {
+    .datagrid-cell {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+
+  .panel-header,
+  .panel-body {
+    border-color: @border-color;
+  }
+
+  .datagrid-header td,
+  .datagrid-body td,
+  .datagrid-footer td {
+    border-color: @border-color;
+    border-style: solid;
+  }
+
+  // .datagrid-row-alt {
+  //   background: #f9f9f9;
+  // }
+  .datagrid-header-check input, .datagrid-cell-check input {
+	width: 15px;
+    height: 15px;
+  }
+}
+/*datagrid覆盖样式end*/
+
+.dgNodata {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  width: 100%;
+  height: 37px;
+  background-color: #ffffff;
+  text-align: center;
+  z-index: 20;
+  font-size: 14px;
+  line-height: 37px;
+  border: 1px solid #e9e9e9;
+  border-top: 0;
+}

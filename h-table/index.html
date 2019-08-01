@@ -1,0 +1,32 @@
+  <div class="h-table-container">
+    <div class="h-table-title">
+      <i class="title-icon"></i>
+      <span class="label">{{title}}</span>
+      <span class="unit">({{unit}})</span>
+      <span
+        class="mat-btn mat-btn-text export-btn export-file pull-right">导出</span>
+    </div>
+    <div class="h-table-body" :style="{width: width, height: height}">
+      <table class="h-table" cellspacing="0">
+        <thead>
+          <tr class="header-row">
+            <th class="header-cell-name" :style="getStyle(col.width)"
+              :class="getCls(col.align, col.className)"
+              v-for="(col,colIndex) in columns" :key="'col-index-'+colIndex">
+              {{col.label}}</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="(row,rowIndex) in rows" :key="'row-index'+rowIndex">
+            <td class="h-tbody-td" :class="getCls(col.align)"
+              v-for="(col,colIndex) in columns" :key="col.label + colIndex"
+              :style="row.style">
+              <template
+                v-if="row[col.field]==0 || !row[col.field]">--</template>
+              <template v-else>{{row[col.field]}}</template>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>

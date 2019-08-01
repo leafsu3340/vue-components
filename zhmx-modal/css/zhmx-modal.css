@@ -1,0 +1,89 @@
+/* font-size */
+.zhmx-info-modal .modal-dialog {
+  width: 1000px;
+}
+.zhmx-info-modal .modal-dialog .modal-content {
+  width: 1000px;
+  border-radius: 0px;
+}
+.zhmx-info-modal .modal-dialog .modal-content .modal-header {
+  padding: 15px 20px;
+}
+.zhmx-info-modal .modal-dialog .modal-content .modal-header .modal-title {
+  font-family: 'Yahei';
+  font-size: 15px;
+  font-weight: bold;
+  margin-left: 8px;
+}
+.zhmx-info-modal .modal-dialog .modal-content .modal-body {
+  padding: 5px 20px;
+}
+.zhmx-info-modal .modal-dialog .modal-content .modal-body .like {
+  text-align: left;
+  text-indent: 30px;
+  display: inline-block;
+  width: 300px;
+  overflow: hidden;
+  height: 28px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.zhmx-info-modal .modal-dialog .modal-content .modal-body .jiange {
+  margin-top: 15px;
+}
+.zhmx-info-modal .modal-dialog .modal-content .modal-body .zxrq {
+  margin-left: 32px;
+}
+.zhmx-info-modal .modal-dialog .modal-content .modal-body .leftcolor {
+  color: #007a72;
+  font-weight: bold;
+  font-family: "Yahei";
+}
+.zhmx-info-modal .modal-dialog .modal-content .modal-body .rightcolor {
+  color: #999999;
+  font-weight: bold;
+  font-family: "Yahei";
+}
+.green-dark-theme .modal-content {
+  background-color: #01201e !important;
+}
+.green-dark-theme .modal-content .modal-body {
+  background-color: #01201e !important;
+}
+.green-dark-theme .modal-content .modal-body .rightcolor {
+  color: #fff !important;
+}
+.green-dark-theme .modal-content .modal-header {
+  background-color: #01201e !important;
+  border-bottom: 1px solid #0ea093 !important;
+}
+.green-dark-theme .modal-content .modal-header .title-container h4 {
+  color: #fff;
+}
+.green-dark-theme .modal-content .modal-header .close {
+  color: #fff;
+}
+.light-green-theme .modal-content {
+  background-color: #144c49 !important;
+  border-radius: 8px !important;
+}
+.light-green-theme .modal-content .modal-body {
+  background-color: #144c49 !important;
+}
+.light-green-theme .modal-content .modal-body .rightcolor {
+  color: #fff !important;
+}
+.light-green-theme .modal-content .modal-body .leftcolor {
+  color: #02c3b2 !important;
+}
+.light-green-theme .modal-content .modal-header {
+  background-color: #144c49 !important;
+  border-bottom: 1px solid #0ea093 !important;
+  border-radius: 8px 8px 0px 0px;
+}
+.light-green-theme .modal-content .modal-header .title-container h4 {
+  color: #fff;
+}
+.light-green-theme .modal-content .modal-header .close {
+  color: #fff;
+}

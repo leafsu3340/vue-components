@@ -1,0 +1,138 @@
+/* font-size */
+.form-control-line {
+  border: none;
+  border-bottom: 1px solid #999999;
+  border-radius: 0px;
+  box-shadow: none;
+}
+.flex-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+/* 字体大小 */
+@media (min-width: 1600px) {
+  .quototion-large {
+    font-size: 30px;
+  }
+}
+@media (min-width: 1024px) {
+  .quototion-large {
+    font-size: 26px;
+  }
+}
+@media (min-width: 1600px) {
+  .quototion-small {
+    font-size: 20px;
+  }
+}
+@media (min-width: 1024px) {
+  .quototion-small {
+    font-size: 16px;
+  }
+}
+@media (min-width: 1600px) {
+  .title-class1 {
+    font-size: 20px;
+  }
+}
+@media (min-width: 1024px) {
+  .title-class1 {
+    font-size: 18px;
+  }
+}
+@media (min-width: 1600px) {
+  .title-class1 {
+    font-size: 16px;
+  }
+}
+@media (min-width: 1024px) {
+  .title-class1 {
+    font-size: 14px;
+  }
+}
+@media (min-width: 1600px) {
+  .main-info {
+    font-size: 14px;
+  }
+}
+@media (min-width: 1024px) {
+  .main-info {
+    font-size: 12px;
+  }
+}
+.oswald-quotation {
+  font-family: 'Oswald-Regular';
+}
+@media (min-width: 1600px) {
+  .oswald-quotation {
+    font-size: 20px;
+  }
+}
+@media (min-width: 1024px) {
+  .oswald-quotation {
+    font-size: 16px;
+  }
+}
+.oswald-main-info {
+  font-family: 'Oswald-Regular';
+}
+@media (min-width: 1600px) {
+  .oswald-main-info {
+    font-size: 20px;
+  }
+}
+@media (min-width: 1024px) {
+  .oswald-main-info {
+    font-size: 18px;
+  }
+}
+.muti-organfilter-container {
+  float: left;
+  margin-right: 0px;
+  z-index: 99;
+  position: relative;
+  display: flex;
+  height: 50px;
+}
+.muti-organfilter-container .flex-item {
+  margin-right: 0px;
+}
+.muti-organfilter-container .filter-label {
+  font-size: 12px;
+  font-weight: 600;
+  width: 90px;
+  text-align: right;
+}
+.muti-organfilter-container .organfilter-inp {
+  border: 0;
+  color: #575a64;
+  outline: none;
+  display: block;
+  font-size: 14px;
+  width: 200px;
+  padding-right: 10px;
+}
+.muti-organfilter-container .organfilter-inp input {
+  box-shadow: 0 -1px 0 0 #999999 inset;
+  width: 190px;
+}
+.muti-organfilter-container .organfilter-inp .organfilter-mat-icon {
+  right: 14px;
+  bottom: 14px;
+}
+.muti-organfilter-container .organfilter-inp .tree-container {
+  position: absolute;
+  max-height: 400px;
+  overflow: auto;
+  min-width: 170px;
+  max-width: 300px;
+}
+.muti-organfilter-container .organfilter-inp .tree-container .jstree-disabled {
+  color: #666666;
+}
+.muti-organfilter-container .organfilter-inp .tree-container .jstree-search {
+  font-style: normal;
+  color: inherit;
+  font-weight: normal;
+}

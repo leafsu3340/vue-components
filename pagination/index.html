@@ -1,0 +1,44 @@
+<div>
+  <nav arial-label="Page" class="pagination-container">
+    <ul class="pagination">
+      <template v-if="pageValue!==-1">
+        <li>
+          <a :class="{'is-disabled':index===1}" class="pre-page" @click="page(index-1)">上页</a>
+        </li>
+        <li :key="2" v-show="count>3 && index>3">
+          <a class="pagination-button ellipsis" @click="page(index-3)">...</a>
+        </li>
+        <li :key="3" v-show="count>0 && index>2" @click="page(index-2)">
+          <a class="pagination-button" v-text="index-2"></a>
+        </li>
+        <li :key="3" v-show="count>0 && index>1" @click="page(index-1)">
+          <a class="pagination-button" v-text="index-1"></a>
+        </li>
+        <!-- 当前页 -->
+        <li :key="4" v-show="count>0" @click="page(index)">
+          <a class="pagination-button is-primary" v-text="index"></a>
+        </li>
+        <li :key="5" v-show="(index+1)<=count" @click="page(index+1)">
+          <a class="pagination-button" v-text="index+1"></a>
+        </li>
+        <li :key="5" v-show="(index+2)<=count" @click="page(index+2)">
+          <a class="pagination-button" v-text="index+2"></a>
+        </li>
+        <li :key="6" v-show="(index+3)<=count">
+          <a class="pagination-button ellipsis" @click="page(index+3)">...</a>
+        </li>
+        <li>
+          <a :class="{'is-disabled':index===count}" @click="page(index+1)" class="next-page">下页</a>
+        </li>
+      </template>
+      <li class="select-container">
+        <select v-model="pageValue">
+          <option v-for="pageItem in pageSizeOption" :key="pageItem.value" :value="pageItem.value">{{pageItem.name}}</option>
+        </select>
+      </li>
+      <span class="tip-text">
+          共{{rows}}条
+        </span>
+    </ul>
+  </nav>
+</div>

@@ -1,0 +1,116 @@
+/* font-size */
+.form-control-line {
+  border: none;
+  border-bottom: 1px solid #999999;
+  border-radius: 0px;
+  box-shadow: none;
+}
+.flex-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+/* 字体大小 */
+@media (min-width: 1600px) {
+  .quototion-large {
+    font-size: 30px;
+  }
+}
+@media (min-width: 1024px) {
+  .quototion-large {
+    font-size: 26px;
+  }
+}
+@media (min-width: 1600px) {
+  .quototion-small {
+    font-size: 20px;
+  }
+}
+@media (min-width: 1024px) {
+  .quototion-small {
+    font-size: 16px;
+  }
+}
+@media (min-width: 1600px) {
+  .title-class1 {
+    font-size: 20px;
+  }
+}
+@media (min-width: 1024px) {
+  .title-class1 {
+    font-size: 18px;
+  }
+}
+@media (min-width: 1600px) {
+  .title-class1 {
+    font-size: 16px;
+  }
+}
+@media (min-width: 1024px) {
+  .title-class1 {
+    font-size: 14px;
+  }
+}
+@media (min-width: 1600px) {
+  .main-info {
+    font-size: 14px;
+  }
+}
+@media (min-width: 1024px) {
+  .main-info {
+    font-size: 12px;
+  }
+}
+.oswald-quotation {
+  font-family: 'Oswald-Regular';
+}
+@media (min-width: 1600px) {
+  .oswald-quotation {
+    font-size: 20px;
+  }
+}
+@media (min-width: 1024px) {
+  .oswald-quotation {
+    font-size: 16px;
+  }
+}
+.oswald-main-info {
+  font-family: 'Oswald-Regular';
+}
+@media (min-width: 1600px) {
+  .oswald-main-info {
+    font-size: 20px;
+  }
+}
+@media (min-width: 1024px) {
+  .oswald-main-info {
+    font-size: 18px;
+  }
+}
+.metric-filter-container .filter-label {
+  margin-right: 5px;
+}
+.metric-filter-container .metric-container .singlemetric {
+  right: 0;
+  top: 20px;
+  pointer-events: none;
+  color: white;
+}
+.metric-filter-container .metric-container input {
+  cursor: pointer;
+  width: 75px;
+}
+.metric-filter-container .metric-container .dropdown-menu {
+  min-width: 75px;
+  width: 75px;
+  padding: 0px;
+}
+.metric-filter-container .metric-container .dropdown-menu .metric-item {
+  cursor: pointer;
+}
+.metric-filter-container .metric-container .dropdown-menu .metric-item:hover {
+  background-color: rgba(232, 235, 237, 0.5);
+}
+.metric-filter-container .metric-container .dropdown-menu .selected-item {
+  background-color: #eee;
+}

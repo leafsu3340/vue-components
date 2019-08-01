@@ -1,0 +1,18 @@
+<div :class="containerClass">
+  <span class="left-side-txt" v-show="showTxt">{{(sliderType == 'horizon')?'低':'高'}}</span>
+  <div class="dbslider-range" :style="{'background-image': rangeBg}">
+    <div class="range-box" :id="sliderBaseId + '-range-box'" @mousedown="changeBlock($event)">
+    </div>
+    <div class="left-modal" :id="sliderBaseId + '-left-modal'"></div>
+    <div class="right-modal" :id="sliderBaseId + '-right-modal'"></div>
+    <div class="range-left block" :id="sliderBaseId + '-range-left'" :style="{'border-bottom-color':leftBlockColor}"
+      @mousedown="changeBlock($event)">
+      <p class="num-txt">{{transformMoney(showLeftVal)}}</p>
+    </div>
+    <div class="range-right block" :id="sliderBaseId + '-range-right'" :style="{'border-bottom-color':rightBlockColor, 'border-top-color':rightBlockColor}"
+      @mousedown="changeBlock($event)">
+      <p class="num-txt">{{transformMoney(showRightVal)}}</p>
+    </div>
+  </div>
+  <span class="right-side-txt" v-show="showTxt">{{(sliderType == 'horizon')?'高':'低'}}</span>
+</div>

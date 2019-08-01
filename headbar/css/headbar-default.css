@@ -1,0 +1,202 @@
+/* font-size */
+.form-control-line {
+  border: none;
+  border-bottom: 1px solid #999999;
+  border-radius: 0px;
+  box-shadow: none;
+}
+.flex-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+/* 字体大小 */
+@media (min-width: 1600px) {
+  .quototion-large {
+    font-size: 30px;
+  }
+}
+@media (min-width: 1024px) {
+  .quototion-large {
+    font-size: 26px;
+  }
+}
+@media (min-width: 1600px) {
+  .quototion-small {
+    font-size: 20px;
+  }
+}
+@media (min-width: 1024px) {
+  .quototion-small {
+    font-size: 16px;
+  }
+}
+@media (min-width: 1600px) {
+  .title-class1 {
+    font-size: 20px;
+  }
+}
+@media (min-width: 1024px) {
+  .title-class1 {
+    font-size: 18px;
+  }
+}
+@media (min-width: 1600px) {
+  .title-class1 {
+    font-size: 16px;
+  }
+}
+@media (min-width: 1024px) {
+  .title-class1 {
+    font-size: 14px;
+  }
+}
+@media (min-width: 1600px) {
+  .main-info {
+    font-size: 14px;
+  }
+}
+@media (min-width: 1024px) {
+  .main-info {
+    font-size: 12px;
+  }
+}
+.oswald-quotation {
+  font-family: 'Oswald-Regular';
+}
+@media (min-width: 1600px) {
+  .oswald-quotation {
+    font-size: 20px;
+  }
+}
+@media (min-width: 1024px) {
+  .oswald-quotation {
+    font-size: 16px;
+  }
+}
+.oswald-main-info {
+  font-family: 'Oswald-Regular';
+}
+@media (min-width: 1600px) {
+  .oswald-main-info {
+    font-size: 20px;
+  }
+}
+@media (min-width: 1024px) {
+  .oswald-main-info {
+    font-size: 18px;
+  }
+}
+.headbar-container {
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: flex;
+  justify-content: flex-end;
+}
+.headbar-container .flex-item {
+  margin-right: 30px;
+  float: right;
+}
+.headbar-container .flex-item .form-control {
+  cursor: pointer;
+  font-size: 12px;
+}
+.headbar-container .date-time-picker {
+  border: none;
+  width: 100px;
+  box-shadow: none;
+  background-color: transparent;
+  padding: 0px;
+  height: 24px;
+}
+.headbar-container .filter-label {
+  margin-right: 5px;
+}
+.headbar-container .select-block {
+  width: 170px;
+}
+.headbar-container .select-block .form-field {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 160px;
+  padding-right: 10px;
+  vertical-align: middle;
+  font-family: "Microsoft YaHei";
+}
+.headbar-container .select-block .mat-icon {
+  right: 0px;
+  bottom: 15px;
+}
+.headbar-container .select-block .tree-container {
+  position: absolute;
+  min-width: 170px;
+  max-width: 300px;
+}
+.headbar-container .select-block .tree-container .jstree-search-input {
+  height: 20px;
+  color: #000 !important;
+  margin: 0 15px;
+  width: calc(100% - 30px);
+}
+.headbar-container .select-block .tree-container .search-icon {
+  color: #000 !important;
+  position: absolute;
+  top: 20px;
+  right: 15px;
+  cursor: pointer;
+}
+.headbar-container .select-block .tree-container .search-icon:hover {
+  opacity: 1;
+}
+.headbar-container .select-block .tree-container .org-tree-container {
+  max-height: 400px;
+  overflow: auto;
+  min-width: 170px;
+  max-width: 300px;
+}
+.headbar-container .select-block .tree-container .jstree-disabled {
+  color: #666666;
+}
+.headbar-container .select-block .tree-container .jstree-search {
+  font-style: normal;
+  color: #0ea093;
+}
+.headbar-container .date-container {
+  position: relative;
+}
+.headbar-container .date-container .arrow-down {
+  right: 0;
+  top: 20px;
+  pointer-events: none;
+}
+.headbar-container .metric-container input {
+  cursor: pointer;
+  width: 75px;
+}
+.headbar-container .metric-container .arrow-down {
+  right: 0;
+  top: 20px;
+  pointer-events: none;
+}
+.headbar-container .metric-container .dropdown-menu {
+  min-width: 75px;
+  width: 75px;
+  padding: 0px;
+}
+.headbar-container .metric-container .dropdown-menu .metric-item {
+  cursor: pointer;
+}
+.headbar-container .metric-container .dropdown-menu .metric-item:hover {
+  background-color: rgba(232, 235, 237, 0.5);
+}
+.headbar-container .metric-container .dropdown-menu .selected-item {
+  background-color: #eee;
+}
+.headbar-container .date-dropdown {
+  margin-right: 10px;
+}
+.headbar-container .date-dropdown input {
+  width: 30px;
+}

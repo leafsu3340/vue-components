@@ -1,0 +1,5 @@
+<div class="money-contianer">
+  <label class="filter-label">金额范围：</label>
+  <input :id="filterId+'-lowLim'" type="text" placeholder="金额下限" @blur="changeMoneyFilter($event.target, 'lowLim')" @focus="focusfilter($event.target)"/>&nbsp;&nbsp;-&nbsp;&nbsp;
+  <input :id="filterId+'-uppLim'" type="text" placeholder="金额上限" @blur="changeMoneyFilter($event.target, 'uppLim')" @focus="focusfilter($event.target)"/>
+</div>

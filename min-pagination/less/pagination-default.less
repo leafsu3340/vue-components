@@ -1,0 +1,51 @@
+@import "../../../less/variable";
+
+.pagination-container {
+  margin-top: 20px;
+  .pagination {
+    display: flex;
+    justify-content: flex-end;
+    font-size: 12px;
+    margin: 0;
+
+    .home-page,
+    .end-page {
+      color: #777;
+    }
+
+    .is-primary {
+      color: #fff !important;
+    }
+
+    .button_end {
+      color: #777;
+    }
+
+    .form-control {
+      height: 5px;
+      width: 30px;
+      text-align: center;
+      display: inline-block;
+      text-align: center;
+      font-size: 12px;
+    }
+  }
+
+  .pagination>li {
+    cursor: pointer;
+  }
+  .pagination>li:last-child>a,
+  .pagination>li:last-child>span {
+    color: #777;
+  }
+  .pagination>li>a,
+  .pagination>li>span {
+    padding: 10px 15px;
+    cursor: pointer;
+  }
+  .pagination>.active>a {
+    color: #fff;
+  }
+}
+
+// 组件主题

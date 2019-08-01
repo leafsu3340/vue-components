@@ -1,0 +1,18 @@
+<div class="metric-filter-container">
+  <div class="flex-item">
+    <label class="filter-label">计量：</label>
+    <span v-if="metricOnly">{{metricOnly}}</span>
+    <template v-if="!metricOnly">
+      <div class="dropdown pr dib dropdown-container metric-container">
+        <input id="metric-input" v-model="metricNames[metric]" type="text" data-toggle="dropdown" aria-haspopup="true"
+          aria-expanded="false" readonly>
+        <i class="fa fa-angle-down arrow-down mat-icon pa singlemetric"></i>
+        <ul class="dropdown-menu" aria-labelledby="metric-input">
+          <li v-for="metricItem in metricData" :key="metricItem.value">
+            <a class="metric-item" @click="metric=metricItem.value" :class="{'selected-item':metric==metricItem.value}">{{metricItem.title}}</a>
+          </li>
+        </ul>
+      </div>
+    </template>
+  </div>
+</div>

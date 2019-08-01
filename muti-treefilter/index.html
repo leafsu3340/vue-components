@@ -1,0 +1,11 @@
+<div class="muti-organfilter-container">
+  <div class="flex-item">
+    <label class="filter-label">{{labelTitle}}：</label>
+    <div class="pr organfilter-inp" :id="filterId">
+      <input class="form-field cursor-pointer text-ellipsis" v-model="selectedNodeNames" 
+        :title="selectedNodeNames" type="text" readonly="true" />
+      <i class="fa fa-angle-down arrow-down organfilter-mat-icon pa"></i>
+      <div class="node-tree-container tree-container" :id="filterId+'-tree-container'"></div>
+    </div>
+  </div>
+</div>

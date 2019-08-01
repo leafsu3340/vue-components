@@ -1,0 +1,12 @@
+/* font-size */
+.white-theme .pagination-container .pagination .is-primary {
+  background-color: #0cb1a1;
+  border-color: #0cb1a1;
+}
+.white-theme .pagination-container .pagination > li > a {
+  color: #0cb1a1;
+  cursor: pointer;
+}
+.white-theme .pagination-container .pagination .form-control {
+  color: #0cb1a1;
+}

@@ -1,0 +1,161 @@
+/* font-size */
+.form-control-line {
+  border: none;
+  border-bottom: 1px solid #999999;
+  border-radius: 0px;
+  box-shadow: none;
+}
+.flex-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+/* 字体大小 */
+@media (min-width: 1600px) {
+  .quototion-large {
+    font-size: 30px;
+  }
+}
+@media (min-width: 1024px) {
+  .quototion-large {
+    font-size: 26px;
+  }
+}
+@media (min-width: 1600px) {
+  .quototion-small {
+    font-size: 20px;
+  }
+}
+@media (min-width: 1024px) {
+  .quototion-small {
+    font-size: 16px;
+  }
+}
+@media (min-width: 1600px) {
+  .title-class1 {
+    font-size: 20px;
+  }
+}
+@media (min-width: 1024px) {
+  .title-class1 {
+    font-size: 18px;
+  }
+}
+@media (min-width: 1600px) {
+  .title-class1 {
+    font-size: 16px;
+  }
+}
+@media (min-width: 1024px) {
+  .title-class1 {
+    font-size: 14px;
+  }
+}
+@media (min-width: 1600px) {
+  .main-info {
+    font-size: 14px;
+  }
+}
+@media (min-width: 1024px) {
+  .main-info {
+    font-size: 12px;
+  }
+}
+.oswald-quotation {
+  font-family: 'Oswald-Regular';
+}
+@media (min-width: 1600px) {
+  .oswald-quotation {
+    font-size: 20px;
+  }
+}
+@media (min-width: 1024px) {
+  .oswald-quotation {
+    font-size: 16px;
+  }
+}
+.oswald-main-info {
+  font-family: 'Oswald-Regular';
+}
+@media (min-width: 1600px) {
+  .oswald-main-info {
+    font-size: 20px;
+  }
+}
+@media (min-width: 1024px) {
+  .oswald-main-info {
+    font-size: 18px;
+  }
+}
+.organfilter-container {
+  float: left;
+  margin-right: 0px;
+  z-index: 99;
+  position: relative;
+  display: flex;
+  height: 40px;
+}
+.organfilter-container .flex-item {
+  margin-right: 0px;
+}
+.organfilter-container .filter-label {
+  font-size: 12px;
+  font-weight: 600;
+  width: 90px;
+  text-align: right;
+}
+.organfilter-container .organfilter-inp {
+  border: 0;
+  color: #575a64;
+  outline: none;
+  display: block;
+  width: 200px;
+  padding-right: 10px;
+}
+.organfilter-container .organfilter-inp input {
+  box-shadow: 0 -1px 0 0 #999999 inset;
+  width: 190px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  padding-right: 10px;
+  overflow: hidden;
+}
+.organfilter-container .organfilter-inp .organfilter-mat-icon {
+  right: 14px;
+  bottom: 4px;
+}
+.organfilter-container .organfilter-inp .tree-container {
+  position: absolute;
+  min-width: 170px;
+  max-width: 300px;
+}
+.organfilter-container .organfilter-inp .tree-container .jstree-search-input {
+  height: 20px;
+  color: #000 !important;
+  margin: 0 15px;
+  width: calc(100% - 30px);
+  box-shadow: 0 -1px 0 0 rgba(12, 177, 161, 0.6) inset !important;
+}
+.organfilter-container .organfilter-inp .tree-container .search-icon {
+  color: #000 !important;
+  position: absolute;
+  top: 18px;
+  right: 10px;
+  cursor: pointer;
+}
+.organfilter-container .organfilter-inp .tree-container .search-icon:hover {
+  opacity: 1;
+}
+.organfilter-container .organfilter-inp .tree-container .org-tree-container {
+  max-height: 400px;
+  overflow: auto;
+  min-width: 170px;
+  max-width: 300px;
+}
+.organfilter-container .organfilter-inp .tree-container .jstree-disabled {
+  color: #666666;
+}
+.organfilter-container .organfilter-inp .tree-container .jstree-search {
+  font-style: normal;
+  color: #0ea093;
+}

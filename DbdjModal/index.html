@@ -1,0 +1,443 @@
+<!-- 督办单据弹出框 -->
+<div>
+  <!-- 退出提示 -->
+  <div class="modal fade template-modal" id="dropout-tip" tabindex="-1" role="dialog">
+    <div class="modal-dialog center-modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" aria-label="Close" @click="closeTipModal">
+            <span aria-hidden="true" class="zjjk-font icon-cha"></span>
+          </button>
+          <h4 class="modal-title">提示</h4>
+        </div>
+        <div class="modal-body">
+          <div class="dropout-tip-content">
+            <p>督办单信息有调整，是否调整后退出？</p>
+            <div class="tip-footer">
+              <span class="mat-btn" @click="confirmSave">确定</span>
+              <span class="mat-btn" @click="cancelSave">取消</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal fade dbdj-modal" :id="dbdjModalId" tabindex="-1" role="dialog">
+    <div class="modal-dialog center-modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true" class="zjjk-font icon-cha"></span>
+          </button>
+          <h4 class="modal-title">{{modalTitle}}</h4>
+        </div>
+        <div class="modal-body" id="dbdj-modal-body">
+          <div class="top-message">
+            <span v-if="!isLaunchStatus">
+              <label class="msg-label">单号：</label>
+              <span class="msg-text">{{launchData.ywkey||'--'}}</span>
+            </span>
+            <span>
+              <label class="msg-label">风险等级：</label>
+              <span class="msg-text levelTag" :class="fxdjClass[businessMap['fxdj']]">{{fxdjText[businessMap['fxdj']]}}</span>
+            </span>
+            <span v-if="">
+              <label class="msg-label">单据状态：</label>
+              <span class="msg-text dbdj-status" :class="dbdjStatusClass[dbdjStatus]">{{dbdjStatusText[dbdjStatus]}}</span>
+            </span>
+          </div>
+          <div id="dbdj-dbdContent" class="dbdj-dbdContent">
+            <div class="dbdj-dbtzdUp">
+
+              <!-- 业务信息 -->
+              <div class="dbdj-captionDiv">
+                <span class="dbdj-captionTitle">业务信息</span>
+              </div>
+              <div id="dbdj-ywxx" class="dbdj-ywxx">
+                <template v-for="(bItem, bIndex) in businessInfo" :key="'bItem'+bIndex">
+                  <div class="dbdj-ywxxItem" v-if="bItem['attr_value']=='1'">
+                    <label class="dbdj-itemName">{{bItem['field_name']}}：</label>
+                    <div class="dbdj-itemValue">
+                      <span v-if="bItem['field_type']=='4'" :title="formatShowMoney(bItem['field_value'])">{{formatShowMoney(bItem['field_value'])}}</span>
+                      <span v-else-if="bItem['field_type']=='3'" :title="splitSpace(bItem['field_value'])">{{splitSpace(bItem['field_value'])}}</span>
+                      <span v-else :title="bItem['field_value']||'--'">{{bItem['field_value']||'--'}}</span>
+                    </div>
+                  </div>
+                </template>
+              </div>
+              <!-- 监控规则 -->
+              <div class="dbdj-captionDiv">
+                <span class="dbdj-captionTitle">监控规则</span>
+              </div>
+              <div class="dbdj-jkgz" v-for="(rule, ruleIndex) in ruleItems"
+                :key="'rule'+ruleIndex">{{rule['rules_desc']}}</div>
+            </div>
+            <!-- 风险处理环节 -->
+            <div class="dbdj-fxclDiv">
+              <div class="dbdj-captionDiv">
+                <span class="dbdj-captionTitle">风险处理环节</span>
+              </div>
+              <div class="dbdj-fxclContentDiv">
+                <div class="fqDiv">
+                  <div class="fxName"><span>发<br>起</span></div>
+                  <div class="fqInfoDiv">
+                    <div class="fqRows">
+                      <div class="rowName tsRow">发起人：</div>
+                      <div class="rowVal" :title="launchData.username||'--'">{{launchData.username||'--'}}</div>
+                      <div class="rowName">发起时间：</div>
+                      <div class="rowVal" :title="formatTimestamp(launchData.stime)">{{formatTimestamp(launchData.stime)}}</div>
+                    </div>
+                    <div class="fqRows">
+                      <div class="rowName tsRow">单据类型：</div>
+                      <div class="rowVal">风险通知单
+                        <!-- <select v-model="launchData.typeid">
+                          <option value="0">核查通知单</option>
+                          <option value="1">整改通知单</option>
+                        </select> -->
+                        <span class="mat-btn mat-btn-text export-btn" v-if="showExportWord"
+                          @click="exportWord">预览</span>
+                      </div>
+                      <div class="rowName">风险单位：</div>
+                      <div class="rowVal" :title="launchData.organname||'--'">{{launchData.organname||'--'}}</div>
+                    </div>
+                    <div class="fqRows">
+                      <div class="rowName tsRow">处理人员：</div>
+                      <div class="clryVal">
+                        <div class="addClr" v-show="dbdjEditable" @click="openPersonPanel">+</div>
+                        <div class="clrSpan" v-for="(dItem, dIndex) in showConfigPersons"
+                          :key="'person'+dIndex">
+                          <div class="deal-person" @mouseover="lsdiusMouseover('dealperson', dItem, $event)">
+                            {{dItem.showname}} {{dItem.mobilephone}}
+                          </div>
+                          <i class="deleteClr fa fa-times" v-show="dbdjEditable"
+                            @click="deleteDealPerson(dItem, dIndex)"></i>
+                        </div>
+                        <div class="fqClrPanel" v-show="showClrPanel">
+                          <i class="fa fa-angle-up close-panel" @click="showClrPanel=false"></i>
+                          <div class="panel-div">
+                            <div class="clrSpan" v-for="(dItem, dIndex) in configPersons"
+                              :key="'person'+dIndex">
+                              <div class="deal-person" @mouseover="lsdiusMouseover('dealperson', dItem, $event)">
+                                {{dItem.showname}} {{dItem.mobilephone}}
+                              </div>
+                              <i class="deleteClr fa fa-times" v-show="dbdjEditable"
+                                @click="deleteDealPerson(dItem, dIndex)"></i>
+                            </div>
+                          </div>
+                        </div>
+                        <i v-show="configPersons.length>4" class="fa fa-angle-down open-panel"
+                          @click="showClrPanel=true"></i>
+                      </div>
+                      <div id="person_panel" class="person_panel" v-show="showPersonPanel">
+                        <input id="clryVal" type="text" class="clry_input"
+                          placeholder="请输入关键字搜索" v-model="searchPerson">
+                        <div class="sy_clry">
+                          <div class="sy_head">
+                            <div class="clr_xm">姓名</div>
+                            <div class="clr_sj">手机号码</div>
+                            <div class="clr_zw">职务</div>
+                          </div>
+                          <div id="sy_content" class="sy_content">
+                            <div id="syline_0" class="sy_line" v-for="(dItem, dIndex) in showPersons"
+                              :key="'pInfo'+dIndex" @click="selectDealPerson(dItem, dIndex)">
+                              <div class="xmVal">
+                                <div class="isDg" v-show="dItem.selected">✔</div>
+                                <div class="isDg" v-show="!dItem.selected"></div>
+                                <div zdyval="0" class="xmVal_txt" :title="dItem.showname">{{dItem.showname}}</div>
+                              </div>
+                              <div class="sjVal" :title="dItem.mobilephone">{{dItem.mobilephone}}</div>
+                              <div class="zwVal" :title="dItem.position">{{dItem.position}}</div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="dxjt"></div>
+                        <div class="yx_clry">
+                          <div class="yx_head">已选择</div>
+                          <div id="yx_content" class="yx_content">
+                            <template v-for="(yxItem, yxIndex) in selectedPersons"
+                              :key="'yxInfo'+yxIndex">
+                              <div class="yxitem" title="chensen">
+                                {{yxItem.showname}}</div>
+                            </template>
+                          </div>
+                        </div>
+                        <div class="cz_clry">
+                          <div class="wc_but" @click="confirmPersonPanel">完成</div>
+                          <div class="tc_but" @click="cancelPersonPanel">退出</div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="fqRows fqBzRows" style="line-height:24px;width:824px;">
+                      <div class="rowName tsRow">备注：</div>
+                      <div class="bzVal">
+                        <textarea v-if="isLaunchStatus&&dbdjEditable" maxlength="300"
+                          rows="4" class="dbdj-bzClas" placeholder="备注信息限定在300字以内"
+                          :style="{'height':fqRemarkHeight+'px'}" :title="launchData.comments"
+                          v-model="launchData.comments" @keyup="verifyWordLength(launchData.comments)"></textarea>
+                        <span v-else>{{launchData.comments||'--'}}</span>
+                      </div>
+                    </div>
+                  </div>
+                </div><!-- fqDiv end -->
+                <hr class="fxHr" v-show="!isLaunchStatus">
+                <div class="discussDiv" v-show="!isLaunchStatus">
+                  <div class="fxName">
+                    <span>讨<br>论</span>
+                  </div>
+                  <div class="chatDiv" id="dbdjChatDiv">
+                    <template v-for="(chatItem, chatIndex) in discussArray"
+                      :key="'chat'+chatIndex">
+                      <div class="usreInfo" :class="{'uTop':chatIndex!=0}">
+                        <img src="img/head.png" @mouseover="lsdiusMouseover('discuss', chatItem, $event)">
+                        <div class="keyInfo">{{chatItem.username}}\{{chatItem['u_organname']}}</div>
+                        <div class="keyTime">{{formatTimestamp(chatItem.lasttime)}}</div>
+                      </div>
+                      <div class="userTxts">
+                        <div class="disTxt" :title="chatItem.comments">{{formatToUser(chatItem['to_username'])}}{{chatItem.comments}}</div>
+                        <div class="Reply" @click="triggerReply(chatItem)"><img
+                            src="img/reply.png"><span>回复</span></div>
+                      </div>
+                    </template>
+                  </div>
+                  <div class="inputDiv" :style="{'height':replyHeight+'px'}">
+                    <div class="input_control">
+                      <textarea class="form-textarea" placeholder="请输入内容"
+                        maxlength="300" @keyup="verifyWordLength(replyComment)"
+                        v-model="replyComment"></textarea>
+                    </div>
+                    <div class="publish flex-center" @click="insertDiscuss">发表</div>
+                  </div>
+                </div>
+                <!-- 讨论区域 DIV end -->
+                <!-- 反馈 -->
+                <hr class="fxHr">
+                <div class="feedbackDiv">
+                  <div class="fxName">
+                    <span>反<br>馈</span>
+                  </div>
+                  <div class="fbContent">
+                    <div class="fbHead">
+                      <hr class="fbHr">
+                      <span>反馈情况</span>
+                      <hr class="fbHr">
+                    </div>
+                    <div id="companyDiv" class="companyDiv">
+                      <div class="company tempClass" v-for="(fItem, cIndex) in feedbackSituation"
+                        :class="getFeedbackClass(fItem)">
+                        <div class="comSpan">{{fItem.label}}</div>
+                        <div class="dropdown pr dib dropdown-container feedback-container"
+                          :class="'feedback-status-'+fItem.value">
+                          <input class="feedback-input" type="text" data-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="false" :class="{'disabled-feekback':verifyAuthority(fItem.roleid)}"
+                            @click="verifyFxdwAuthority('fkls', fItem, $event)"
+                            v-model="fItem.valTitle" readonly />
+                          <i class="fa fa-angle-down arrow-down mat-icon pa"
+                            :class="{'hide-angle-down':verifyAuthority(fItem.roleid)}"></i>
+                          <ul class="dropdown-menu" aria-labelledby="feedback-input">
+                            <li v-for="backItem in feedbackList" :key="backItem.value">
+                              <a class="feedback-item" :class="{'selected-item':fItem.value==backItem.value}"
+                                @click="changeFeedback(fItem, backItem, cIndex)">{{backItem.title}}</a>
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- company div end -->
+                    <div class="fbHead fTop">
+                      <hr class="fbHr">
+                      <span>反馈信息</span>
+                      <hr class="fbHr">
+                    </div>
+                    <div class="fkContent">
+                      <div class="fkrTime">
+                        <div id="fkrVal" class="fkName">反馈人：</div>
+                        <span id="fkrname">{{currentFkInfo.showname||''}}</span>
+                        <div class="fkName fkLeft">反馈时间：</div>
+                        <span id="fksjVal">{{formatTimestamp(currentFkInfo.lasttime)}}</span>
+                      </div>
+                      <div class="zzclDiv" :class="{'showFilePanel':showFilePanel}">
+                        <div class="fkName">佐证材料：</div>
+                        <div class="dbdj-fxclItemValue" v-if="isFxdwPosition">
+                          <input type="file" id="dbdj-fileUpload" name="file"
+                            multiple="multiple" style="display: none;">
+                          <a v-show="dbdjEditable" class="dbdj-webuploader-pick"
+                            id="dbdj-pick" style="background-color: rgb(241, 255, 253);"
+                            @click="fileUpload">上传</a>
+                        </div>
+                        <span v-if="!isFxdwPosition&&(initFiles.length==0)"
+                          style="float:left;">--</span>
+                        <div id="fkclFiles" class="fkclFiles">
+                          <div style="width:525px">
+                            <div class="clDiv" v-for="(file, fileIndex) in initFiles"
+                              :title="showFileName(file)">
+                              <div class="clName" @click="downloadFile(file)">{{showFileName(file)}}</div>
+                              <i class="clDelete fa fa-times" v-if="isFxdwPosition&&dbdjEditable"
+                                @click="deleteInitFile(fileIndex,file)"></i>
+                            </div>
+                            <div class="clDiv" v-for="(file, fileIndex) in uploadFiles"
+                              :title="showFileName(file)">
+                              <div class="clName" @click="downloadFile(file)">{{showFileName(file)}}</div>
+                              <i class="clDelete fa fa-times" v-if="isFxdwPosition&&dbdjEditable"
+                                @click="deleteAddFile(fileIndex,file)"></i>
+                            </div>
+                            <i v-show="(initFiles.length+uploadFiles.length)>5"
+                              class="fa fa-angle-down open-panel" @click="showFilePanel=true"></i>
+                          </div>
+                          <div class="fqClrPanel" v-show="showFilePanel" style="height:90px;width:550px;padding-top:10px;">
+                            <i class="fa fa-angle-up close-panel" @click="showFilePanel=false"></i>
+                            <div style="position: relative;width:525px;">
+                              <div class="clDiv" v-for="(file, fileIndex) in initFiles"
+                                :title="showFileName(file)">
+                                <div class="clName" @click="downloadFile(file)">{{showFileName(file)}}</div>
+                                <i class="clDelete fa fa-times" v-if="isFxdwPosition"
+                                  @click="deleteInitFile(fileIndex,file)"></i>
+                              </div>
+                              <div class="clDiv" v-for="(file, fileIndex) in uploadFiles"
+                                :title="showFileName(file)">
+                                <div class="clName" @click="downloadFile(file)">{{showFileName(file)}}</div>
+                                <i class="clDelete fa fa-times" v-if="isFxdwPosition"
+                                  @click="deleteAddFile(fileIndex,file)"></i>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <!-- 弹框面板 -->
+                        <div id="dbdj-zk" class="dbdj-zk" style="display: none;"></div>
+                        <div id="dbdj-FilesDiv" class="dbdj-FilesDiv" style="display: none;">
+                          <div id="filesCon" class="filesCon"></div>
+                          <div id="fcHide" class="fcHide"></div>
+                        </div>
+                      </div>
+                      <div class="zzclDiv" :style="{'height':fkOpinionHeight+'px'}">
+                        <div class="fkName">反馈意见：</div>
+                        <div class="inputDiv ifkyj">
+                          <textarea v-if="isFxdwPosition&&dbdjEditable" class="form-textarea"
+                            maxlength="300" placeholder="请输入内容" :title="fkOpinion"
+                            v-model="fkOpinion" @keyup="verifyWordLength(fkOpinion)"></textarea>
+                          <span v-else>{{fkOpinion}}</span>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="fbHead fTop">
+                      <hr class="fbHr">
+                      <span>反馈历史</span>
+                      <hr class="fbHr">
+                    </div>
+                    <div id="fklsDivs" class="fklsContent">
+                      <div class="timeAxis">
+                        <div id="ajt" class="jtDiv" @click="moveFklsPanel('left')"
+                          v-show="(fklsPages>1)&&(fklsPageIndex>0)">‹‹</div>
+                        <div class="fklsHr"></div>
+                        <div id="bjt" class="jtDiv jtLf" @click="moveFklsPanel('right')"
+                          v-show="(fklsPages>1)&&(fklsPageIndex<fklsPages-1)">››</div>
+                      </div>
+                      <div class="slider-panel">
+                        <div id="fklsPanel" style="position:absolute">
+                          <div class="fklsItem" v-for="(fklsItem, fkIndex) in reverseFklsArray"
+                            :key="'fkls'+fkIndex">
+                            <div class="lsName">{{fkqkNames[fklsItem.fkstep]}}</div>
+                            <div :id="fkIndex" class="lsdius" @mouseover="lsdiusMouseover('fkls', fklsItem, $event)">
+                              <div class="lsdiu"></div>
+                            </div>
+                            <div class="lsTime">{{formatTimestamp(fklsItem.lasttime)}}</div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- 反馈历史 div end -->
+                  </div>
+                </div>
+                <hr class="fxHr">
+                <!-- 审核 -->
+                <div class="examineDiv">
+                  <div class="fxName">
+                    <span>审<br>核</span>
+                  </div>
+                  <div class="examContent">
+                    <div class="fbHead" style="margin-bottom: 50px">
+                      <hr class="fbHr">
+                      <span>审核情况</span>
+                      <hr class="fbHr">
+                    </div>
+                    <div id="shlsCompany" class="companyDiv">
+                      <div class="company tempClass" v-for="(audit, auditIndex) in auditSituation"
+                        :class="getFeedbackClass(audit)">
+                        <div class="comSpan">{{audit.label}}</div>
+                        <div class="dropdown pr dib dropdown-container feedback-container"
+                          :class="'feedback-status-'+audit.value">
+                          <input class="feedback-input" type="text" data-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="false" :class="{'disabled-feekback':verifyAuditAuthority(audit.roleid)}"
+                            @click="verifyFxdwAuthority('shls', audit, $event)"
+                            v-model="audit.valTitle" readonly>
+                          <i class="fa fa-angle-down arrow-down mat-icon pa"
+                            :class="{'hide-angle-down':verifyAuditAuthority(audit.roleid)}"></i>
+                          <ul class="dropdown-menu" aria-labelledby="feedback-input">
+                            <li v-for="backItem in feedbackList" :key="backItem.value">
+                              <a class="feedback-item" :class="{'selected-item':audit.value==backItem.value}"
+                                @click="changeExamine(audit, backItem, auditIndex)">{{backItem.title}}</a>
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- company div end -->
+                    <div class="fbHead fTop">
+                      <hr class="fbHr">
+                      <span>审核历史</span>
+                      <hr class="fbHr">
+                    </div>
+                    <div id="shlsDivs" class="fklsContent">
+                      <div class="timeAxis">
+                        <div id="ajt" class="jtDiv" @click="moveShlsPanel('left')"
+                          v-show="(shlsPages>1)&&(shlsPageIndex>0)">‹‹</div>
+                        <div class="fklsHr"></div>
+                        <div id="bjt" class="jtDiv jtLf" @click="moveShlsPanel('right')"
+                          v-show="(shlsPages>1)&&(shlsPageIndex<shlsPages-1)">››</div>
+                      </div>
+                      <div class="slider-panel">
+                        <div id="shlsPanel" style="position:absolute">
+                          <div class="fklsItem" v-for="(shlsItem, shIndex) in reverseShlsArray"
+                            :key="'shls'+shIndex">
+                            <div class="lsName">{{fkqkNames[shlsItem.fkstep]}}</div>
+                            <div :id="shIndex" class="lsdius" @mouseover="lsdiusMouseover('shls', shlsItem, $event)">
+                              <div class="lsdiu">
+                              </div>
+                            </div>
+                            <div class="lsTime">{{formatTimestamp(shlsItem.lasttime)}}</div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- 反馈历史 div end -->
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- 弹框显示用户信息 -->
+          <div style="display: none;">
+            <div id="user-info" class="user-info">
+            </div>
+          </div>
+          <!-- content footer -->
+          <div id="dbdj-dbdFooter" class="dbdj-dbdFooter">
+            <input id="dbdj-Save" type="button" value="保存" class="dbdj-dbdBtn fqdb"
+              v-if="showSaveBtn&&dbdjEditable" @click="saveSupervise('save')"
+              :disabled="disabledSave" key="dbdbtn-save" />
+            <input id="dbdj-Close" type="button" value="督办发起" class="dbdj-dbdBtn"
+              v-if="showDbfqBtn" @click="saveSupervise('launch')" :disabled="disabledSave"
+              key="dbdbtn-launch" />
+            <input id="dbdj-Close" type="button" value="督办关闭" class="dbdj-dbdBtn"
+              v-if="showDbgbBtn&&enableCloseAndRelaunch" @click="saveSupervise('close')"
+              :disabled="disabledSave" key="dbdbtn-close" />
+            <input id="dbdj-Close" type="button" value="重新发起" class="dbdj-dbdBtn"
+              v-if="showCxfqBtn&&enableCloseAndRelaunch" @click="saveSupervise('reLaunch')"
+              :disabled="disabledSave" key="dbdbtn-relaunch" />
+            <input id="dbdj-Exit" type="button" value="退出" class="dbdj-dbdBtn exit"
+              @click="dropOutDbdj" key="dbdj-exit" key="dbdbtn-exit" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

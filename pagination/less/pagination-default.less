@@ -1,0 +1,93 @@
+@import "../../../less/variable";
+
+.pagination-container {
+  margin-top: 20px;
+  .tip-text {
+    font-size: 12px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    margin-left: 15px;
+  }
+  .pagination {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    font-size: 12px;
+    margin: 0;
+
+    .pre-page,
+    .next-page {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      background-color:transparent;
+      font-size: 12px;
+      width: 56px;
+      height: 30px;
+    }
+
+    .pagination-button {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 30px;
+      height: 30px;
+      cursor: pointer;
+      background-color:transparent;
+      font-size: 12px;
+      color: #0ea093;
+      padding: 0px;
+      &:hover {
+        background-color: #b1eeea
+      }
+    }
+
+    .ellipsis {
+      font-size: 16px;
+      padding: 0px;
+    }
+
+    .is-primary {
+      color: #fff !important;
+      background-color: #0ea093 !important;
+    }
+
+    .is-disabled {
+      color: #c2c2c2 !important;
+      cursor: default !important;
+    }
+
+    .select-container {
+      color: #666666;
+    }
+  }
+
+  // 覆盖样式
+  .pagination>li>a {
+    border: none;
+  }
+
+  // .pagination>li {
+  //   cursor: pointer;
+  // }
+  // .pagination>li:last-child>a,
+  // .pagination>li:last-child>span {
+  //   color: #777;
+  // }
+  
+  // .pagination>li>span {
+  //   display: flex;
+  //   justify-content: center;
+  //   align-items: center;
+  //   width: 30px;
+  //   height: 30px;
+  //   cursor: pointer;
+  // }
+  // .pagination>.active>a {
+  //   color: #fff;
+  // }
+}
+
+// 组件主题

@@ -1,0 +1,243 @@
+@import "../../../less/variable";
+
+.htmx-info-modal{
+  .modal-dialog {
+    width: 1000px;
+    .modal-content{
+      width: 1000px;
+      height: 740px;
+      .modal-header{
+        padding: 15px 20px;
+        .close{
+          .modal-header-span{
+            font-size: 40px;
+            margin-right: 8px;
+          }
+        }
+        .modal-title{
+          font-family: 'Yahei';
+          font-size: 15px;
+          font-weight: bold;
+        }
+      }
+      .modal-body {
+        padding: 0px;
+        padding-left: 18px;
+        float: left;
+        .detail-baseMessage{
+          float: left;
+          width: 963px;
+          position: relative;
+          .Message-header{
+            .baseMessage-header-radio{
+              float: right;
+              margin-top: 23px;
+              width: 153px;
+              font-size: 12px;
+              font-family: "Yahei";
+              color: #666666;
+              .header-radio-yuan{
+                margin-right: 8px;
+              }
+              .header-radio-ben{
+                margin-left: 16px;
+                margin-right: 8px;
+              }
+            }
+          }
+        }
+        .detail-intBeaMessage{
+          float: left;
+          width: 963px;
+        }
+        .detail-moneyMessage{
+          width: 963px;
+          float: left;
+          .Message-header{
+            .payMessage{
+              cursor: pointer;
+              padding-left: 8px; 
+              padding-right: 8px;
+              padding-bottom: 6px;
+              left: 0px;
+              bottom: -2px;
+              border-bottom: 2px solid transparent;
+              color: #999999
+            }
+            .repayMessage{
+              cursor: pointer;
+              padding-left: 8px; 
+              padding-right: 8px;
+              padding-bottom: 6px;
+              left: 80px;
+              bottom: -2px;
+              border-bottom: 2px solid transparent;
+              color: #999999
+            }
+            .bottomHight {
+              border-color: #43d1b7;
+              color: #0ea093
+            }         
+          }
+          .moneyMessage-content{
+            margin-top: 25px;
+            margin-bottom: 25px;
+            height: 225px;
+            padding-left: 8px;
+            .moneyMessage-datatable{
+              width: 528px;
+              height: 225px;
+              text-align: right;
+              float: left;
+              .mat-table-normal > table > tbody > tr{
+                height: 37px;
+              }
+              .mat-table-normal > table > thead > tr > th{
+                text-align: center;
+                color: #363636;
+                font-weight: 600;
+                padding: 8px;
+                font-size: 14px
+              }
+              .mat-table-normal > table > tbody > tr:hover{
+                background-color: #ffffde !important;
+              }
+              .mat-table-normal > table > tbody > tr > td{
+                font-family: "Microsoft YaHei";
+                padding: 8px 13px;
+                font-size: 14px
+              }
+              .mat-table-normal > table > tbody > tr > td:hover{
+                background-color: #ffffde !important;
+                font-family: "Microsoft YaHei"
+              }
+              .repay-table-body,
+              .pay-table-body {
+                position: relative;
+                overflow: hidden;
+                height: 188px;
+                width: 526px;
+              }
+              .xh-td {
+                width: 64px;
+              }
+              .dkbh-td {
+                width: 200px;
+              }
+              .dkrq-td,
+              .dkje-td {
+                width: 132px;
+              }
+              // .textOverflowEll {
+              //   white-space: nowrap;/*控制单行显示*/
+              //   overflow: hidden;/*超出隐藏*/
+              //   text-overflow: ellipsis;/*隐藏的字符用省略号表示*/
+              // }
+            }
+            .moneyMessage-echarts{
+              margin-left: 25px;
+              float: left;
+              width: 390px;
+              height: 225px;
+              .moneyMessage-detaileOfEcharts{
+                height: 46px;
+                width: 390px;
+                text-align: center;
+                font-size: 14px;
+                font-family: 'Yahei';
+                color: #333333
+              }
+              .moneyMessage-detaileOfEcharts > span{
+                font-size: 14px;
+                font-family: "Oswald-Regular";
+                color: #009999
+              }
+              .moneyMessage-pieEcharts{
+                #dkPieChart{
+                  height: 179px;
+                  width: 390px
+                }
+                #hkPieChart{
+                  height: 179px;
+                  width: 390px
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  //header and content
+  .Message-header{
+    width: 100%;
+    height: 48px;
+    border-bottom: 2px solid #43d1b7;
+    position: relative;
+    .importStyle{
+      right: 0px;
+      position: absolute;
+      bottom: 0;
+      border: 0;
+      text-decoration: underline;
+      color: #0ea093;
+    }
+    .importStyle:hover{
+      right: 0px;
+      position: absolute;
+      bottom: 0;
+      border: 0;
+      text-decoration: underline;
+      color: #01c7b5;
+    }
+    .Message-header-title{
+      font-size: 14px;
+      font-weight: bold;
+      color: #0ea093;
+      font-family: 'Yahei';
+      position: absolute;
+      left: 8px;
+      bottom: 6px;
+    }
+  }
+  .Message-content{
+    margin-top: 14px;
+    .Message-content-div{
+      float: left;
+      .Message-content-div-label{
+        float: left;
+        width: 131px;
+        height: 28px;
+        text-align: right;
+        font-size: 12px;
+        font-weight: bold;
+        color: #007a72;
+        font-family: 'Yahei';
+        top: 0px;
+      }
+      .Message-content-div-value{
+        font-family: microsoft YaHei;
+        float: left;
+        width: 182px;
+        height: 28px;
+        margin-left: 8px;
+        font-size: 12px;
+        color: #999999;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        word-break: normal;
+        white-space: nowrap;
+      }
+    }
+  }
+}
+
+.textOver{
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.penetrate-highlight{
+  background-color: #ffffde !important;
+}

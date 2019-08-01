@@ -1,0 +1,306 @@
+<!-- 票据台账明细弹出框 -->
+<div>
+  <!-- 票据台账明细弹出框 modal识别为模态框 fade显示的时候会有淡入淡出效果-->
+  <div class="modal fade pjmx-info-modal" :id="pjmxModalId" tabindex="-1" role="dialog">
+    <!-- 模态框开始 -->
+    <div class="modal-dialog center-modal-dialog" role="document">
+      <div class="modal-content" :style="{'height':flag?'605px':'417px'}">
+        <div class="modal-header">
+          <!--header开始  -->
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true" class="zjjk-font icon-cha"></span>
+          </button>
+          <h4 v-show="flag">应收票据详细信息</h4>
+          <h4 v-show="!flag">应付票据详细信息</h4>
+        </div>
+        <!--header结束  -->
+        <div class="modal-body">
+          <div style="margin: 20px; float: left;">
+              <div class="Message-content-div" v-for="(item, itemIndex) in showData">
+                <!-- <div class="Message-content-div-label">{{item.title}}:</div>
+                <div class="Message-content-div-value" :title="item.value">
+                  {{judgeBaseMesType(item.field_type, item.value)}}
+                </div> -->
+                <p class="like">
+                  <span class="leftcolor">{{item.title}}:</span>
+                  <span class="rightcolor" :title="item.value">
+                      {{judgeBaseMesType(item.field_type, item.value)}}
+                  </span>
+                </p>
+              </div>
+          </div>
+
+          <!-- <div v-show="false">
+            
+            <div class="jiange">
+              <p class="like">
+                <span class="leftcolor">单位名称：</span>&nbsp&nbsp
+                <span class="rightcolor" v-bind:title="pjtzmxDetailInfo.organname">{{pjtzmxDetailInfo.organname}}</span>
+              </p>
+              <p class="like">
+                <span class="leftcolor">票据号码：</span>&nbsp&nbsp
+                <span class="rightcolor" v-bind:title="pjtzmxDetailInfo.bill_no">{{pjtzmxDetailInfo.bill_no}}</span>
+              </p>
+              <p class="like">
+                <span class="leftcolor">票面金额：</span>&nbsp&nbsp
+                <span class="rightcolor" :title="pjtzmxDetailInfo.bill_money">{{dividemoney(pjtzmxDetailInfo.bill_money)}}</span>
+              </p>
+            </div>
+            <div class="jiange">
+              <p class="like">
+                <span class="leftcolor">票据类型：</span>
+                <span class="rightcolor" v-bind:title="pjtzmxDetailInfo.bill_type_name">
+                  {{pjtzmxDetailInfo.bill_type_name}} </span>
+              </p>
+              <p class="like">
+                <span class="leftcolor">票据介质：</span>
+                <span class="rightcolor" v-bind:title="pjtzmxDetailInfo.bill_medium_name">{{pjtzmxDetailInfo.bill_medium_name}}
+                </span>
+              </p>
+              <p class="like">
+                <span class="leftcolor">票据状态：</span>
+                <span class="rightcolor" v-bind:title="pjtzmxDetailInfo.recbill_status_name">{{pjtzmxDetailInfo.recbill_status_name}}</span>
+              </p>
+            </div>
+            <div class="jiange">
+              <p class="like">
+                <span class="leftcolor">出票人：</span>
+                <span class="rightcolor" v-bind:title="pjtzmxDetailInfo.issue_person">{{pjtzmxDetailInfo.issue_person}}</span>
+              </p>
+              <p class="like">
+                <span class="leftcolor">出票日期：</span>
+                <span class="rightcolor" v-bind:title="issue_date">{{issue_date}}</span>
+              </p>
+              <p class="like">
+                <span class="leftcolor">到期日：</span>
+                <span class="rightcolor" v-bind:title="due_date">{{due_date}}</span>
+              </p>
+            </div>
+            <div class="jiange">
+              <p class="like">
+                <span class="leftcolor">承兑人：</span>
+                <span class="rightcolor" v-bind:title="pjtzmxDetailInfo.accept_person">
+                  {{pjtzmxDetailInfo.accept_person}}</span>
+              </p>
+              <p class="like">
+                <span class="leftcolor">付票单位：</span>
+                <span class="rightcolor" v-bind:title="pjtzmxDetailInfo.fpdwmc">{{pjtzmxDetailInfo.fpdwmc}}</span>
+              </p>
+              <p class="like">
+                <span class="leftcolor">收票单位：</span>
+                <span class="rightcolor" v-bind:title="pjtzmxDetailInfo.spdwmc">{{pjtzmxDetailInfo.spdwmc}}</span>
+              </p>
+            </div>
+            <div class="jiange">
+              <p class="like">
+                <span class="leftcolor">被背书人：</span>
+                <span class="rightcolor" v-bind:title="pjtzmxDetailInfo.bbsr_mc">{{pjtzmxDetailInfo.bbsr_mc}}</span>
+              </p>
+              <p class="like">
+                <span class="leftcolor">背书日期：</span>
+                <span class="rightcolor" v-bind:title="endorse_date">{{endorse_date}}</span>
+              </p>
+              <p class="like">
+                <span class="leftcolor">收票日期：</span>
+                <span class="rightcolor" v-bind:title="receive_date">{{receive_date}}</span>
+              </p>
+            </div>
+            <div class="jiange">
+              <p class="like">
+                <span class="leftcolor">保管人：</span>
+                <span class="rightcolor" v-bind:title="pjtzmxDetailInfo.keepind_person">{{pjtzmxDetailInfo.keepind_person}}</span>
+              </p>
+              <p class="like">
+                <span class="leftcolor">贴现日期：</span>
+                <span class="rightcolor" v-bind:title="discount_date">{{discount_date }}
+                </span>
+              </p>
+              <p class="like">
+                <span class="leftcolor">开始时间：</span>
+                <span class="rightcolor" v-bind:title="begin_time">{{begin_time}}</span>
+              </p>
+            </div>
+            <div class="jiange">
+              <p class="like">
+                <span class="leftcolor">保管方式：</span>
+                <span class="rightcolor" v-bind:title="pjtzmxDetailInfo.keepind_type_name">{{pjtzmxDetailInfo.keepind_type_name}}</span>
+              </p>
+              <p class="like">
+                <span class="leftcolor">收款日期：</span>
+                <span class="rightcolor" v-bind:title="cdrq">{{cdrq}}</span>
+              </p>
+              <p class="like">
+                <span class="leftcolor">结束时间：</span>
+                <span class="rightcolor" v-bind:title="end_time">{{end_time}}</span>
+              </p>
+            </div>
+            <div class="jiange">
+              <p class="like">
+                <span class="leftcolor">出票人账号：</span>
+                <span class="rightcolor" v-bind:title="pjtzmxDetailInfo.issue_account_no">{{pjtzmxDetailInfo.issue_account_no}}</span>
+              </p>
+              <p class="like">
+                <span class="leftcolor">承兑协议号：</span>
+                <span class="rightcolor" v-bind:title="pjtzmxDetailInfo.accept_agreement_code">{{pjtzmxDetailInfo.accept_agreement_code}}</span>
+              </p>
+              <p class="like">
+                <span class="leftcolor">承兑日期：</span>
+                <span class="rightcolor" v-bind:title="accept_date">{{accept_date}}</span>
+              </p>
+            </div>
+            <div class="jiange">
+              <p class="like">
+                <span class="leftcolor">付款行：</span>
+                <span class="rightcolor" v-bind:title="pjtzmxDetailInfo.pay_bank">{{pjtzmxDetailInfo.pay_bank}}</span>
+              </p>
+              <p class="like">
+                <span class="leftcolor">付款行联行号：</span>
+                <span class="rightcolor" v-bind:title="pjtzmxDetailInfo.pay_bank_lhh">{{pjtzmxDetailInfo.pay_bank_lhh}}</span>
+              </p>
+              <p class="like">
+                <span class="leftcolor">付款行地址：</span>
+                <span class="rightcolor" v-bind:title="pjtzmxDetailInfo.fkdd">{{pjtzmxDetailInfo.fkdd}}</span>
+              </p>
+            </div>
+            <div class="jiange">
+              <p class="like">
+                <span class="leftcolor">收款人：</span>
+                <span class="rightcolor" v-bind:title="pjtzmxDetailInfo.rec_person">{{pjtzmxDetailInfo.rec_person}}</span>
+              </p>
+              <p class="like">
+                <span class="leftcolor">收款人账号：</span>
+                <span class="rightcolor" v-bind:title="pjtzmxDetailInfo.rec_account_no">{{pjtzmxDetailInfo.rec_account_no}}</span>
+              </p>
+              <p class="like">
+                <span class="leftcolor">收款人开户行：</span>
+                <span class="rightcolor" v-bind:title="pjtzmxDetailInfo.rec_bank">{{pjtzmxDetailInfo.rec_bank}}</span>
+              </p>
+            </div>
+            <div class="jiange">
+              <p class="like">
+                <span class="leftcolor">贴现行：</span>
+                <span class="rightcolor" v-bind:title="pjtzmxDetailInfo.discount_bank">{{pjtzmxDetailInfo.discount_bank}}</span>
+              </p>
+              <p class="like">
+                <span class="leftcolor">贴现利率：</span>
+                <span class="rightcolor" v-bind:title="pjtzmxDetailInfo.discount_rate">{{discount_rate}}</span>
+              </p>
+              <p class="like">
+                <span class="leftcolor">贴现利息承担人：</span>
+                <span class="rightcolor" v-bind:title="pjtzmxDetailInfo.discount_rate_type">{{pjtzmxDetailInfo.discount_rate_type}}</span>
+              </p>
+            </div>
+          </div>
+          
+          <div v-show="!flag">
+            
+            <div class="jiange">
+              <p class="like">
+                <span class="leftcolor">单位名称：</span>
+                <span class="rightcolor" v-bind:title="pjtzmxDetailInfo.organname">{{pjtzmxDetailInfo.organname}}</span>
+              </p>
+              <p class="like">
+                <span class="leftcolor">票据号码：</span>
+                <span class="rightcolor" v-bind:title="pjtzmxDetailInfo.bill_no">{{pjtzmxDetailInfo.bill_no}}</span>
+              </p>
+              <p class="like">
+                <span class="leftcolor">票面金额：</span>
+                <span class="rightcolor" v-bind:title="pjtzmxDetailInfo.bill_money">{{pjtzmxDetailInfo.bill_money}}</span>
+              </p>
+            </div>
+            <div class="jiange">
+              <p class="like">
+                <span class="leftcolor">票据类型：</span>
+                <span class="rightcolor" v-bind:title="pjtzmxDetailInfo.bill_type_name">{{pjtzmxDetailInfo.bill_type_name}}</span>
+              </p>
+              <p class="like">
+                <span class="leftcolor">票据介质：</span>
+                <span class="rightcolor" v-bind:title="pjtzmxDetailInfo.bill_medium_name">{{pjtzmxDetailInfo.bill_medium_name}}</span>
+              </p>
+              <p class="like">
+                <span class="leftcolor">票据状态：</span>
+                <span class="rightcolor" v-bind:title="pjtzmxDetailInfo.bill_status_name">{{pjtzmxDetailInfo.bill_status_name}}</span>
+              </p>
+            </div>
+            <div class="jiange">
+              <p class="like">
+                <span class="leftcolor">出票人：</span>
+                <span class="rightcolor" v-bind:title="pjtzmxDetailInfo.issue_person">{{pjtzmxDetailInfo.issue_person}}</span>
+              </p>
+              <p class="like">
+                <span class="leftcolor">出票日期：</span>
+                <span class="rightcolor" v-bind:title="pjtzmxDetailInfo.issue_date">{{pjtzmxDetailInfo.issue_date}}</span>
+              </p>
+              <p class="like">
+                <span class="leftcolor">到期日：</span>
+                <span class="rightcolor" v-bind:title="pjtzmxDetailInfo.due_date">{{pjtzmxDetailInfo.due_date}}</span>
+              </p>
+            </div>
+            <div class="jiange">
+              <p class="like">
+                <span class="leftcolor">出票人帐号：</span>
+                <span class="rightcolor" v-bind:title="pjtzmxDetailInfo.issue_account_no">{{pjtzmxDetailInfo.issue_account_no}}</span>
+              </p>
+              <p class="like">
+                <span class="leftcolor">开票金融机构：</span>
+                <span class="rightcolor" v-bind:title="pjtzmxDetailInfo.bank_name">{{pjtzmxDetailInfo.bank_name}}</span>
+              </p>
+              <p class="like">
+                <span class="leftcolor">开始时间：</span>
+                <span class="rightcolor" v-bind:title="pjtzmxDetailInfo.begin_time">{{pjtzmxDetailInfo.begin_time}}</span>
+              </p>
+            </div>
+
+            <div class="jiange">
+              <p class="like">
+                <span class="leftcolor">付款行：</span>
+                <span class="rightcolor" v-bind:title="pjtzmxDetailInfo.pay_bank">{{pjtzmxDetailInfo.pay_bank}}</span>
+              </p>
+              <p class="like">
+                <span class="leftcolor">付款日期：</span>
+                <span class="rightcolor" v-bind:title="pjtzmxDetailInfo.pay_date">{{pjtzmxDetailInfo.pay_date}}</span>
+              </p>
+              <p class="like">
+                <span class="leftcolor">结束时间：</span>
+                <span class="rightcolor" v-bind:title="pjtzmxDetailInfo.end_time">{{pjtzmxDetailInfo.end_time}}</span>
+              </p>
+            </div>
+
+            <div class="jiange">
+              <p class="like">
+                <span class="leftcolor">收款人：</span>
+                <span class="rightcolor" v-bind:title="pjtzmxDetailInfo.rec_person">{{pjtzmxDetailInfo.rec_person}}</span>
+              </p>
+              <p class="like">
+                <span class="leftcolor">收款人帐号：</span>
+                <span class="rightcolor" v-bind:title="pjtzmxDetailInfo.rec_account_no">{{pjtzmxDetailInfo.rec_account_no}}</span>
+              </p>
+              <p class="like">
+                <span class="leftcolor">收款人开户行：</span>
+                <span class="rightcolor" v-bind:title="pjtzmxDetailInfo.rec_bank">{{pjtzmxDetailInfo.rec_bank}}</span>
+              </p>
+            </div>
+
+            <div class="jiange">
+              <p class="like">
+                <span class="leftcolor">承兑人：</span>
+                <span class="rightcolor" v-bind:title="pjtzmxDetailInfo.accept_person">{{pjtzmxDetailInfo.accept_person}}</span>
+              </p>
+              <p class="like">
+                <span class="leftcolor">承兑人协议号：</span>
+                <span class="rightcolor" v-bind:title="pjtzmxDetailInfo.accept_agreement_code">{{pjtzmxDetailInfo.accept_agreement_code}}</span>
+              </p>
+              <p class="like">
+                <span class="leftcolor">承兑日期：</span>
+                <span class="rightcolor" v-bind:title="pjtzmxDetailInfo.accept_date">{{pjtzmxDetailInfo.accept_date}}</span>
+              </p>
+            </div>
+
+          </div> -->
+          <!-- if结束 -->
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--模态框结束  -->
+</div>

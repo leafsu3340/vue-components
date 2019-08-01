@@ -1,0 +1,51 @@
+/* font-size */
+.pjmx-info-modal .modal-dialog {
+  width: 1000px;
+}
+.pjmx-info-modal .modal-dialog .modal-content {
+  width: 1000px;
+  border-radius: 0px;
+}
+.pjmx-info-modal .modal-dialog .modal-content .modal-header {
+  padding: 15px 20px;
+}
+.pjmx-info-modal .modal-dialog .modal-content .modal-header .close .modal-header-span {
+  font-size: 40px;
+  margin-right: 8px;
+}
+.pjmx-info-modal .modal-dialog .modal-content .modal-header .modal-title {
+  font-family: 'Yahei';
+  font-size: 15px;
+  font-weight: bold;
+  margin-left: 8px;
+}
+.pjmx-info-modal .modal-dialog .modal-content .modal-body {
+  padding: 5px 20px;
+  float: left;
+}
+.pjmx-info-modal .modal-dialog .modal-content .modal-body .like {
+  text-align: left;
+  text-indent: 30px;
+  display: inline-block;
+  width: 300px;
+  overflow: hidden;
+  height: 28px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.pjmx-info-modal .modal-dialog .modal-content .modal-body .Message-content-div {
+  float: left;
+  width: 300px;
+  height: 45px;
+}
+.pjmx-info-modal .modal-dialog .modal-content .modal-body .leftcolor {
+  color: #007a72;
+  font-weight: bold;
+  font-family: "Yahei";
+}
+.pjmx-info-modal .modal-dialog .modal-content .modal-body .rightcolor {
+  margin-left: 8px;
+  color: #999999;
+  font-family: "Yahei";
+  font-weight: bold;
+}

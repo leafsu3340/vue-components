@@ -1,0 +1,46 @@
+<div class="pagination-container">
+  <nav arial-label="Page" class="pagination-container">
+    <ul class="pagination">
+      <li>
+        <a @click="page(1)" class="home-page">
+          首页
+        </a>
+      </li>
+      <li>
+        <a :class="{'is-disabled':index===count}" class="pre-page" @click="page(index-1)">上页</a>
+      </li>
+      <li :key="1" v-show="count>0 && index>1" @click="page(1)">
+        <a class="button">1</a>
+      </li>
+      <li :key="2" v-show="count>3 && index>3">
+        <span>...</span>
+      </li>
+      <li :key="3" v-show="count>0 && index>2" @click="page(index-1)">
+        <a class="button" v-text="index-1"></a>
+      </li>
+      <li :key="4" v-show="count>0" @click="page(index)">
+        <a class="button is-primary" v-text="index"></a>
+      </li>
+      <li :key="5" v-show="index<count" @click="page(index+1)">
+        <a class="button" v-text="index+1"></a>
+      </li>
+      <li :key="6" v-show="(index+2)<count">
+        <span>...</span>
+      </li>
+      <li :key="7" v-show="(index+1)<count" @click="page(count)">
+        <a class="button" v-text="count"></a>
+      </li>
+      <li>
+        <a :class="{'is-disabled':index===count}" @click="page(index+1)" class="next-page">下页</a>
+      </li>
+      <li>
+        <a @click="page(count)" class="end-page">尾页</a>
+      </li>
+      <li class="button_end">
+        <a>共
+          <span v-text="count"></span>页，到第
+          <input class="form-control" type="text" v-model="enterPage" @keyup.enter="gotoPage()">页</a>
+      </li>
+    </ul>
+  </nav>
+</div>

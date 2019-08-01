@@ -1,0 +1,73 @@
+.config-filters-container {
+  margin-top: 20px;
+  position: relative;
+  float: left;
+}
+.config-filters-container .config-filters {
+  float: left;
+  min-width: 580px;
+  width: calc(100% - 200px);
+}
+.config-filters-container .config-filters .config-filter {
+  width: 290px;
+  height: 40px;
+  float: left;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+.config-filters-container .config-filters .config-filter .filter-label {
+  font-size: 12px;
+  font-weight: 600;
+  width: 90px;
+  text-align: right;
+}
+.config-filters-container .config-filters .config-filter .filter-nm-input {
+  width: 190px;
+  box-shadow: 0 -1px 0 0 #999999 inset;
+}
+.config-filters-container .config-filters .config-filter .filter-sm-input {
+  width: 89px;
+  box-shadow: 0 -1px 0 0 #999999 inset;
+}
+.config-filters-container .config-filters .money-filter .money-filter-input {
+  text-align: center;
+}
+.config-filters-container .config-filters .config-sg-date-filter .datepicker-container {
+  width: 290px;
+  padding-right: 10px;
+}
+.config-filters-container .config-filters .config-sg-date-filter .datepicker-container .filter-input input {
+  width: 190px;
+}
+.config-filters-container .config-filters .config-sg-date-filter .filter-label {
+  width: 90px;
+}
+.config-filters-container .config-filters .config-date-filter {
+  width: 290px;
+}
+.config-filters-container .config-filters .config-date-filter .datepicker-container {
+  width: auto;
+}
+.config-filters-container .config-filters .config-date-filter .filter-label {
+  font-size: 12px;
+  font-weight: 600;
+  width: 90px;
+  text-align: right;
+}
+.config-filters-container .config-filters .config-date-filter .endate .filter-label {
+  width: 15px;
+}
+.config-filters-container .config-filters-operation {
+  padding-top: 8px;
+  width: 200px;
+  float: right;
+}
+.config-filters-container .config-filters-operation .query-btn {
+  margin: 0px 10px;
+  float: right;
+}
+.config-filters-container .config-filters-operation .reset-btn {
+  margin: 0px 10px;
+  float: right;
+}

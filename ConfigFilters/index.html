@@ -1,0 +1,62 @@
+<!-- 可配置筛选框 -->
+<div class="config-filters-container">
+  <div class="config-filters">
+    <template v-for="(item, filterIndex) in filtersData" :key="item.reportid+item.field+filterIndex">
+      <!-- 单选筛选 -->
+      <!-- 多选筛选 -->
+      <div v-if="item.type==2" class="config-filter">
+        <drop-filter :ref="item.field" :filtersData="item.options" :initIds="item.initvalue||''" :filterTitle="item.title"
+          :phyIdKey="'enumid'" @selectFilters="setEumFilter(arguments[0], item.field)" :key="item.reportid+item.field+filterIndex"></drop-filter>
+      </div>
+      <!-- 模糊查询 -->
+      <div v-if="item.type==3" class="config-filter">
+        <label class="filter-label">{{item.title+'：'}}</label>
+        <input :ref="item.field" class="filter-nm-input" type="text" placeholder="输入查询" :title="item.verifytip" v-model="inputModel[item.field]"
+          @change="fuzzyQuery(item.field, item, $event)" :key="item.reportid+item.field+filterIndex" />
+      </div>
+      <!-- 时间单选 -->
+      <div v-if="item.type==4" class="config-filter config-sg-date-filter">
+        <date-picker :ref="item.field" :initDate="''" :endDate="''" :labelTitle="item.title+'：'" :pickerId="'config-single-datepicker'+filterIndex"
+          @dateTimeChange="onSingleDateChange(arguments[0], item.field)" :key="item.reportid+item.field+filterIndex"></date-picker>
+      </div>
+      <!-- 时间区间筛选 -->
+      <div v-if="item.type==5" class="config-filter config-date-filter">
+        <date-picker :ref="'start_'+item.field" :initDate="''" :labelTitle="item.title+'：'" :endDate="item.endOfStartDate||''"
+          :pickerId="'config-start-start-datepicker'+filterIndex" :key="'start_'+item.reportid+item.field+filterIndex"
+          @dateTimeChange="onStartSDateChange(arguments[0], 'start_'+item.field, filterIndex)"></date-picker>
+
+        <date-picker :ref="'end_'+item.field" :initDate="''" class="endate" :labelTitle="'至'" :startDate="item.startOfStartDate||''"
+          :pickerId="'config-start-end-datepicker'+filterIndex" :key="'end_'+item.reportid+item.field+filterIndex"
+          @dateTimeChange="onStartEDateChange(arguments[0], 'end_'+item.field, filterIndex)"></date-picker>
+      </div>
+      <!-- 金额区间 -->
+      <div v-if="item.type==6" class="config-filter money-filter" style="padding-right:10px;">
+        <label class="filter-label">{{item.title+'：'}}</label>
+        <input :ref="'start_'+item.field" class="filter-sm-input money-filter-input" type="text" :title="item.verifytip"
+          v-model="inputModel['start_'+item.field]" @change="changeMoneyInput('start_', item, $event)" 
+          @focus="focusfilter($event.target)" :key="'start_'+item.reportid+item.field" placeholder="金额下限"/>至
+        <input :ref="'end_'+item.field" class="filter-sm-input money-filter-input" type="text" :title="item.verifytip"
+          v-model="inputModel['end_'+item.field]" @change="changeMoneyInput('end_', item, $event)" 
+          @focus="focusfilter($event.target)" :key="'end_'+item.reportid+item.field" placeholder="金额上限"/>
+      </div>
+      <!-- 布尔 -->
+      <!-- <div v-if="item.type==7" class="config-filter">
+        <drop-filter :ref="item.field" :filtersData="[]" :filterTitle="item.title" :phyIdKey="'enumid'" :initIds="item.initvalue"
+          @selectFilters="setEumFilter(arguments[0], item.field)"></drop-filter>
+      </div>  -->
+      <!-- 账户区间 -->
+      <div v-if="item.type==8" class="config-filter" style="padding-right:10px;">
+        <label class="filter-label">{{item.title+'：'}}</label>
+        <input :ref="'start_'+item.field" class="filter-sm-input" type="text" :title="item.verifytip" @change="changeAccountInput('start_', item, $event)"
+        v-model="inputModel['start_'+item.field]" :key="'start_'+item.reportid+item.field" />至
+        <input :ref="'end_'+item.field" class="filter-sm-input" type="text" :title="item.verifytip" @change="changeAccountInput('end_', item, $event)"
+        v-model="inputModel['end_'+item.field]" :key="'end_'+item.reportid+item.field" />
+      </div>
+    </template>
+    <!-- 结束日期 -->
+  </div>
+  <div class="config-filters-operation">
+    <span class="mat-btn mat-btn-text reset-btn" @click="resetQuery">重置</span>
+    <span class="mat-btn mat-btn-ghost query-btn" @click="triggerQuery">查询</span>
+  </div>
+</div>

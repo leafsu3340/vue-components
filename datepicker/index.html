@@ -1,0 +1,7 @@
+<div class="datepicker-container">
+  <label class="filter-label">{{labelTitle}}</label>
+  <span class="filter-input">
+    <input :id="pickerId" v-model="dateTime" :title="dateTime" class="form-control form-control-line date-time-picker" readonly/>
+    <i @click="clearDate" class="pa fa fa-times datepicker-icon" :class="{'show-icon':!!dateTime}" title="清除"></i>
+  </span>
+</div>

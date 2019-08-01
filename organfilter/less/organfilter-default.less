@@ -1,0 +1,89 @@
+@import "../../../less/variable";
+@import "../../../less/common";
+
+.organfilter-container {
+  float: left;
+  margin-right: 0px;
+  z-index: 99;
+  position: relative;
+  display: flex;
+  height: 40px;
+
+  .flex-item {
+    margin-right: 0px;
+  }
+
+  .filter-label {
+    font-size: 12px;
+    font-weight: 600;
+    width: 90px;
+    text-align: right;
+  }
+
+  .organfilter-inp {
+    border: 0;
+    color: #575a64;
+    outline: none;
+    display: block;
+    width: 200px;
+    padding-right: 10px;
+
+    input {
+      box-shadow: 0 -1px 0 0 #999999 inset;
+      width: 190px;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      padding-right: 10px;
+      overflow: hidden;
+    }
+
+    .organfilter-mat-icon {
+      right: 14px;
+      bottom: 4px;
+    }
+
+    .tree-container {
+      position: absolute;
+      min-width: 170px;
+      max-width: 300px;
+
+      .jstree-search-input {
+        height: 20px;
+        color: #000 !important;
+        margin: 0 15px;
+        width: calc(~"100% - 30px");
+        box-shadow: 0 -1px 0 0 rgba(12, 177, 161, 0.6) inset !important;
+      }
+
+      .search-icon {
+        color: #000 !important;
+        position: absolute;
+        top: 18px;
+        right: 10px;
+        cursor: pointer;
+
+        &:hover {
+          opacity: 1;
+        }
+      }
+
+      .org-tree-container {
+        max-height: 400px;
+        overflow: auto;
+        min-width: 170px;
+        max-width: 300px;
+      }
+
+      .jstree-disabled {
+        color: #666666;
+      }
+
+      .jstree-search {
+        font-style: normal;
+        color: #0ea093;
+      }
+    }
+  }
+}
+
+// 组件主题

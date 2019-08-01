@@ -1,0 +1,45 @@
+@import "../../../less/variable";
+
+.td-common {
+  padding: 3px 8px;
+  white-space: nowrap;
+}
+
+.datatable-container {
+  font-size: 12px;
+  @media @min-width-1024 {
+    font-size: 12px;
+  }
+  @media @min-width-1600 {
+    font-size: 14px;
+  }
+  margin-bottom: 30px;
+  .datatable-grid {
+    width: 1500px;
+  }
+  table.dataTable thead th, 
+  table.dataTable thead td {
+    text-align: center;
+    min-height: 40px;
+    .td-common();
+  }
+
+  table.dataTable tbody td {
+    min-height: 36px;
+    .td-common();
+    .text-right {
+      text-align: right;
+    }
+    .text-left {
+      text-align: left;
+    }
+  }  
+  table.dataTable tbody .highlight {
+    background-color: antiquewhite;
+  }
+  table.dataTable tbody td.dataTables_empty {
+    top: 300px !important;
+  }
+}
+
+// 组件主题

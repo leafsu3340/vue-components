@@ -1,0 +1,37 @@
+<!-- 融资台账明细弹出框 -->
+<div>
+  <zhmxmodal ref="zhmxModal" :reqParams="zhmxModalParam" :contentHeight="730"></zhmxmodal>
+  <div class="modal fade zjzhs-tree-modal" :id="zjzhsModalId" tabindex="-1" role="dialog">
+    <div class="modal-dialog center-modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true" class="zjjk-font icon-cha"></span>
+          </button>
+          <h4 class="modal-title">{{modalTitle}}</h4>
+        </div>
+        <div class="modal-body" id="mainpage-modal-body">
+          <!-- tree-grid -->
+          <div class="operation-constainer">
+            <ul class="mat-tabs-header clearfix">
+              <li :class="{'active':!isAlone}">
+                <a @click="switchZhClass(false)">集团账户</a>
+              </li>
+              <li :class="{'active':isAlone}">
+                <a @click="switchZhClass(true)">独立账户</a>
+              </li>
+              <li class="head-info">
+                <span class="total-info">共{{total}}条记录</span>
+                <span class="mat-btn mat-btn-text export-btn" @click="exportZjzhFile">导出</span>
+              </li>
+            </ul>
+          </div>
+          <datagrid ref="zjModalGridTable" :metric="metric" :gridTableId="'zjzhs-modal-table'" :gridContainerId="'zjzhs-modal-container'"
+            :gridHeight="isAlone?550:600" :hightLightFields="['account']" :frozenColumnsFormat="zjzhsModalGridFormat" :rootOrganId="organId" :treeNodeKey="'account_id'" :pTreeNodeKey="'paccount_id'"
+            @finishDraw="onZjModalFinishDraw" @lazyLoadTreeGrid="onZjModalLazyLoad(arguments[0])" @onClickCell="onClickCell(arguments[0])"></datagrid>
+          <!-- <pagination v-if="showPagination"></pagination> -->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

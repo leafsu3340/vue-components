@@ -1,0 +1,1718 @@
+@import "../../../less/variable";
+
+.dbdj-modal {
+  .modal-dialog {
+    width: 1000px;
+
+    .modal-content {
+      width: 1000px;
+      border-radius: 0px;
+
+      .modal-header {
+        .close {
+          .modal-header-span {
+            font-size: 40px;
+            margin-right: 8px;
+          }
+        }
+
+        .modal-title {
+          font-size: 15px;
+          font-weight: bold;
+          margin-left: 8px;
+        }
+      }
+
+      .modal-body {
+        .top-message {
+          margin-bottom: 15px;
+
+          span {
+            margin-right: 20px;
+            height: 24px;
+            display: inline-block;
+          }
+
+          .msg-label {
+            font-weight: 600;
+            font-size: 14px;
+          }
+
+          .msg-text {
+            font-size: 14px;
+          }
+
+          .dbdj-status {
+            color: #fff;
+            text-align: center;
+            font-weight: 600;
+            width: 75px;
+            height: 23px;
+            font-size: 12px;
+            line-height: 24px;
+            padding-left: 20px;
+          }
+
+          .non-launch {
+            background: url(../../../img/dbdj-status.png) no-repeat right 0px top 0px;
+          }
+
+          .to-examine {
+            background: url(../../../img/dbdj-status.png) no-repeat right 0px top -24px;
+          }
+
+          .to-feedback {
+            background: url(../../../img/dbdj-status.png) no-repeat right 0px top -48px;
+          }
+
+          .non-risk {
+            background: url(../../../img/dbdj-status.png) no-repeat right 0px top -72px;
+          }
+
+          .sys-close {
+            background: url(../../../img/dbdj-status.png) no-repeat right 0px top -96px;
+          }
+
+          .dbdj-close {
+            background: url(../../../img/dbdj-status.png) no-repeat right 0px top -120px;
+          }
+
+          .levelTag {
+            font-size: 12px;
+            padding: 0px 4px;
+            margin-right: 8px;
+            color: #FFF;
+            height: 16px;
+            border-radius: 4px;
+          }
+
+          .levelTag.red {
+            background-color: #FE4D52;
+          }
+
+          .levelTag.orange {
+            background-color: #FF9C00;
+          }
+
+          .levelTag.yellow {
+            background-color: #D9C807;
+          }
+
+          .levelTag.green {
+            background-color: #7ed57a;
+          }
+        }
+
+        .dbdj-dbdContent {
+          padding-right: 5px;
+          overflow: auto;
+          height: calc(~"100vh - 210px");
+        }
+
+        // 反馈
+        .feedback-container {
+          width: 80px;
+
+          .feedback-input {
+            width: 100%;
+            height: 24px;
+            margin-top: 10px;
+            line-height: 24px;
+            text-align: center;
+            border: 1px solid #ccc;
+            border-radius: 15px;
+            cursor: pointer;
+            box-shadow: none;
+          }
+
+          input[type=text]:disabled {
+            cursor: default;
+          }
+
+          .arrow-down {
+            right: 5px;
+            top: 18px;
+            pointer-events: none;
+          }
+
+          .dropdown-menu {
+            width: 80px;
+            min-width: 80px;
+            padding: 0px;
+
+            .feedback-item {
+              cursor: pointer;
+
+              &:hover {
+                background-color: rgba(232, 235, 237, .5);
+              }
+            }
+
+            .selected-item {
+              background-color: #eee;
+            }
+          }
+        }
+
+        .feedback-status-0 {
+          .feedback-input {
+            background: #84ccb7;
+            color: #fff;
+            border: none;
+          }
+
+          .arrow-down {
+            color: #fff;
+          }
+        }
+
+        .feedback-status-1 {
+          .feedback-input {
+            background: #FF8DC8;
+            color: #fff;
+            border: none;
+          }
+
+          .arrow-down {
+            color: #fff;
+          }
+        }
+
+        .feedback-status-2 {
+          .feedback-input {
+            background: #78d873;
+            color: #fff;
+            border: none;
+          }
+
+          .arrow-down {
+            color: #fff;
+          }
+        }
+
+        .feedback-status-3 {
+          .feedback-input {
+            background: #ffa194;
+            color: #fff;
+            border: none;
+          }
+
+          .arrow-down {
+            color: #fff;
+          }
+        }
+
+        // TODO: 待整理
+        .dbdj-dbdFooter {
+          height: 30px;
+          margin-top: 15px;
+          margin-bottom: 15px;
+        }
+
+        .dbdj-dbdTit {
+          font-weight: bold;
+          font-size: 16px;
+        }
+
+        .dbdj-dh {
+          float: right;
+          position: absolute;
+          top: 0;
+          right: 10px;
+        }
+
+        .dbdj-dhName {
+          font-weight: bold;
+          border: none;
+          text-align: right;
+        }
+
+        .dbdj-itemName {
+          border: none;
+          text-align: right;
+          width: 144px;
+          float: left;
+          line-height: 28px;
+          color: #007a72;
+          font-family: "Microsoft Yahei", "Arial";
+        }
+
+        .dbdj-itemValue {
+          position: relative;
+          max-width: 222px;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+          overflow: hidden;
+          color: #333;
+        }
+
+        .dbdj-captionDiv {
+          height: 30px;
+          line-height: 30px;
+          font-size: 14px;
+          font-weight: bold;
+          background-color: #0da093;
+          color: #fff;
+        }
+
+        .dbdj-captionTitle {
+          margin-left: 5px;
+          float: left;
+        }
+
+        .dbdj-ywxx {
+          width: 100%;
+          min-height: 10px;
+          max-height: 160px;
+          overflow-y: auto;
+        }
+
+        .dbdj-ywxxItem {
+          width: 50%;
+          border-bottom: solid 1px #DFDFD7;
+          height: 30px;
+          line-height: 30px;
+          float: left;
+        }
+
+        .dbdj-jkgz {
+          line-height: 30px;
+          overflow: auto;
+          padding: 0 8px;
+          color: #666;
+          size: 12px;
+          font-family: "Microsoft Yahei", "Arial";
+        }
+
+        .dbdj-fxclIcon {
+          width: 16px;
+          height: 16px;
+          float: right;
+          cursor: pointer;
+          margin: 8px;
+          background-image: url(.././images/zk.png);
+        }
+
+        .dbdj-fxclIcon:hover {
+          background-image: url(.././images/images/zk-jg.png);
+        }
+
+        .dbdj-fxclClose {
+          background-image: url(.././images/images/close.png);
+        }
+
+        .dbdj-fxclClose:hover {
+          background-image: url(.././images/images/close_hover.png);
+        }
+
+        .dbdj-dbdBtn {
+          width: 80px;
+          height: 30px;
+          font-size: 14px;
+          font-weight: bold;
+          line-height: 28px;
+          text-align: center;
+          cursor: pointer;
+          border: 1px solid #60CFBD;
+          float: right;
+          margin-left: 10px;
+          background-color: #FFF;
+          border-radius: 3px;
+        }
+
+        .dbdj-dbdBtnClose {
+          width: 80px;
+          height: 30px;
+          font-size: 14px;
+          font-weight: bold;
+          line-height: 28px;
+          text-align: center;
+          border: 1px solid #333333;
+          float: right;
+          margin-left: 10px;
+          background-color: #FFF;
+          border-radius: 3px;
+        }
+
+        .dbdj-dbdBtn:hover {
+          background-color: #60CFBD;
+        }
+
+        .dbdj-save {
+          background-color: #60CFBD;
+        }
+
+        .dbdj-save:hover {
+          background-color: #FFF;
+        }
+
+        .dbdj-fxclDiv {
+          min-height: 300px;
+        }
+
+        .dbdj-fxclContentDiv {
+          min-height: 120px;
+          height: 120px;
+          font-family: "Microsoft Yahei";
+        }
+
+        .dbdj-fxclTitleDiv {
+          float: left;
+          width: 50px;
+          font-size: 14px;
+          border-right: solid 1px #DFDFD7;
+          height: 100%;
+          text-align: center;
+          line-height: 50px;
+          display: table;
+        }
+
+        .dbdj-fxclTitle {
+          display: table-cell;
+          vertical-align: middle;
+        }
+
+        .dbdj-fxclContent {
+          overflow: auto;
+          height: 100%;
+        }
+
+        .dbdj-fxclFqContent {
+          height: 98%;
+          clear: right;
+        }
+
+        .dbdj-fxclRow {
+          min-height: 25px;
+          padding: 5px 0 0 10px;
+          line-height: 21px;
+        }
+
+        .dbdj-fxclItem {
+          float: left;
+          min-width: 120px;
+        }
+
+        .dbdj-fxclItemName {
+          font-weight: bold;
+          float: left;
+        }
+
+        .dbdj-fxclItemValue {
+          position: relative;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+          overflow: hidden;
+          color: #666;
+          margin-top: 5px;
+        }
+
+        .dbdj-fqBtn {
+          color: #333;
+          background-color: #F1FFFD;
+          border: solid 1px #A3C1C5;
+          margin-top: 0;
+          margin-left: 20px;
+          border-radius: 3px;
+          margin-top: -3px;
+          cursor: pointer;
+        }
+
+        .dbdj-bzRow {
+          min-height: 40px;
+          display: inline-block;
+          margin-bottom: 5px;
+        }
+
+        .dbdj-bzTextarea {
+          width: 650px;
+          max-width: 650px;
+          font-family: "Microsoft Yahei";
+          font-size: 12px;
+          resize: none;
+        }
+
+        .dbdj-bzDiv {
+          float: left;
+          width: 100%;
+          height: 25px;
+          margin-top: 10px;
+          max-width: 660px;
+          white-space: normal;
+        }
+
+        .dbdj-grayFont {
+          color: #AEAEAE;
+        }
+
+        .dbdj-fileDiv {
+          float: left;
+          margin-right: 10px;
+        }
+
+        .dbdj-bzContent {
+          width: 580px;
+          height: 18px;
+          resize: none;
+          margin-top: 5px;
+        }
+
+        .dbdj-webuploader-pick {
+          position: relative;
+          cursor: pointer;
+          background-color: #F1FFFD;
+          color: #000000;
+          border: solid 1px #A3C1C5;
+          float: left;
+          padding-left: 20px;
+          padding-right: 4px;
+          height: 20px;
+          line-height: 20px;
+          font-size: 12px;
+          background-image: url(../../../img/upload-icon.png);
+          background-position-y: center;
+          background-position-x: 5px;
+          background-repeat: no-repeat;
+          margin-right: 10px;
+          border-radius: 3px;
+          text-decoration: none;
+        }
+
+        .dbdj-info {
+          color: #0099d2;
+          float: left;
+          cursor: pointer;
+        }
+
+        .dbdj-infoDel {
+          color: red;
+          text-decoration: none;
+          float: left;
+          font-weight: bold;
+          cursor: pointer;
+        }
+
+        .dbdj-uploadFileList {
+          width: 100%;
+          float: left;
+        }
+
+        .dbdj-dbdInfo_key {
+          width: 106px;
+          height: 32px;
+          float: left;
+          line-height: 32px;
+          text-align: right;
+          border-bottom: solid 1px #DFDFD7;
+        }
+
+        .dbdj-dbdInfo_value {
+          width: 267px;
+          height: 32px;
+          float: left;
+          line-height: 32px;
+          border-bottom: solid 1px #DFDFD7;
+        }
+
+        .dbdj-borderTop {
+          border-top: solid 1px #DFDFD7;
+        }
+
+        .fqDiv {
+          float: left;
+          margin-top: 15px;
+          margin-bottom: 10px;
+          width: 100%;
+        }
+
+        .fxName {
+          float: left;
+          width: 30px;
+          height: 74px;
+          background-image: url(../../../img/tarIcon.png);
+          color: #333333;
+          font-size: 14px;
+          font-weight: bold;
+          text-align: center;
+          margin-left: 10px;
+        }
+
+        .fxName span {
+          float: left;
+          padding-top: 15px;
+          padding-left: 8px;
+        }
+
+        .fqInfoDiv {
+          margin-left: 12px;
+        }
+
+        .fqHead {
+          float: left;
+          width: 100%;
+          height: 15px;
+          line-height: 15px;
+        }
+
+        .fqHead div {
+          float: left;
+        }
+
+        .infoName {
+          color: #666666;
+          font-size: 12px;
+          font-weight: bold;
+        }
+
+        .infoVale {
+          color: #999999;
+          font-size: 12px;
+          margin-right: 50px;
+        }
+
+        .dbdj-bzClas {
+          width: 695px;
+          max-width: 695px;
+          height: 20px;
+          font-family: "Microsoft Yahei";
+          font-size: 12px;
+          resize: none;
+          margin-top: 3px;
+          margin-left: 3px;
+          padding: 0;
+        }
+
+        .dbdj-bzSpan {
+          float: left;
+          width: 50px;
+          margin-right: 5px;
+        }
+
+        .fxHr {
+          width: 100%;
+          height: 3px;
+          margin-top: 15px;
+          background-color: #eeeeee;
+          border: none;
+        }
+
+
+        .discussDiv {
+          margin-top: 10px;
+          width: 100%;
+        }
+
+        .chatDiv {
+          height: 220px;
+          margin-left: 45px;
+          overflow-y: auto;
+          padding: 0 25px;
+        }
+
+        .usreInfo {
+          width: 100%;
+          height: 22px;
+          line-height: 22px;
+        }
+
+        .uTop {
+          margin-bottom: 10px;
+        }
+
+        .usreInfo img {
+          float: left;
+          cursor: pointer;
+        }
+
+        .keyInfo {
+          float: left;
+          width: 500px;
+          margin-left: 8px;
+        }
+
+        .keyTime {
+          float: right;
+          color: #999999;
+        }
+
+        .userTxts {
+          width: 100%;
+          margin-bottom: 5px;
+          margin-top: 5px;
+          padding: 5px;
+          position: relative;
+          color: #999999;
+          border-bottom: 1px solid #f5f5f5;
+        }
+
+        .disTxt {
+          width: 600px;
+          word-break: break-all;
+          white-space: inherit;
+        }
+
+        .Reply {
+          cursor: pointer;
+          position: absolute;
+          right: 5px;
+          bottom: 5px;
+        }
+
+        .Reply:hover {
+          color: #00A8FF;
+        }
+
+        .Reply img {
+          float: left;
+          margin-top: 3px;
+          margin-right: 5px;
+        }
+
+        .inputDiv {
+          float: left;
+          height: 30px;
+          line-height: 30px;
+          margin-top: 15px;
+          margin-left: 85px;
+          width: calc(~"100% - 100px");
+          margin-bottom: 15px;
+
+          .form-textarea {
+            width: 100%;
+            height: 100%;
+            resize: none;
+            padding: 0px;
+            line-height: 28px;
+          }
+
+          input {
+            width: 100%;
+          }
+        }
+
+        .ifkyj {
+          width: calc(~"100% - 95px");
+          height: 100%;
+          margin-top: 0px;
+          margin-left: 0px;
+          padding: 1px;
+          word-break: break-all;
+
+          input {
+            width: 100%;
+          }
+        }
+
+        .input_control {
+          padding: 1px;
+          float: left;
+          height: 100%;
+          width: calc(~"100% - 60px");
+        }
+
+        .inputDiv input[type="text"],
+        #btn1,
+        #btn2 {
+          box-sizing: border-box;
+          text-align: left;
+          height: 100%;
+          border-radius: 0px;
+          border: 1px solid #BDE9E4;
+          color: #333;
+          -web-kit-appearance: none;
+          -moz-appearance: none;
+          display: block;
+          outline: 0;
+          padding: 0 1em;
+          text-decoration: none;
+          width: 100%;
+        }
+
+        .inputDiv input[type="text"]:focus {
+          border: 1px solid #BDE9E4;
+        }
+
+        .publish {
+          float: right;
+          width: 60px;
+          height: 100%;
+          text-align: center;
+          font-weight: bold;
+          background-color: #BDE9E4;
+          cursor: pointer;
+
+          &:hover {
+            background-color: #94DED6;
+          }
+        }
+
+        .hfr {
+          color: #00A8FF !important;
+          padding-left: 3px;
+          padding-right: 10px;
+        }
+
+
+        .feedbackDiv {
+          margin-top: 10px;
+          width: 100%;
+        }
+
+        .fbContent {
+          margin-left: 45px;
+          overflow-y: auto;
+        }
+
+        .fbHead {
+          float: left;
+          width: 100%;
+          height: 20px;
+          line-height: 20px;
+
+          span {
+            float: left;
+            width: 80px;
+            color: #aaaaaa;
+            text-align: center;
+            font-weight: bold;
+            font-size: 14px;
+          }
+        }
+
+        .fbHr {
+          float: left;
+          width: calc(~"(100% - 85px)/2");
+          background-color: #aaaaaa;
+          margin-top: 10px;
+        }
+
+        .fTop {
+          margin-top: 15px;
+        }
+
+        .companyDiv {
+          margin-top: 15px;
+          display: flex;
+          float: left;
+          width: 100%;
+          justify-content: space-around;
+        }
+
+        .company {
+          width: 84px;
+          height: 54px;
+        }
+
+        .comSpan {
+          font-size: 14px;
+          font-weight: bold;
+          text-align: center;
+          height: 20px;
+          line-height: 20px;
+          width: 100%;
+          color: #333333;
+        }
+
+        .comDiv {
+          float: left;
+          width: 100%;
+          height: 24px;
+          margin-top: 10px;
+          line-height: 24px;
+          text-align: center;
+          border-radius: 15px;
+          background-color: red;
+          cursor: pointer;
+        }
+
+        .normSpan {
+          float: right;
+          margin-right: 10px;
+          margin-top: 6px;
+          width: 10px;
+          height: 10px;
+          background: url(../../../img/popIcon.png) -131px -2px;
+        }
+
+        .comLef {
+          margin-left: 17px;
+        }
+
+        .com0 {
+          background-color: #99ff00;
+          color: #458000;
+        }
+
+        .com0:hover {
+          background-color: #CCFF99;
+          color: #458000;
+        }
+
+        .com1 {
+          background-color: #ff3333;
+          color: #660000;
+        }
+
+        .com1:hover {
+          background-color: #FF9595;
+          color: #458000;
+        }
+
+        .com2 {
+          background-color: #ffd800;
+          color: #333300;
+        }
+
+        .com2:hover {
+          background-color: #FFED8A;
+          color: #333300;
+        }
+
+        .com3 {
+          background-color: #ff9900;
+          color: #802300;
+        }
+
+        .com3:hover {
+          background-color: #FFC56D;
+          color: #802300;
+        }
+
+        .com4 {
+          background-color: #F2F2F2;
+          border: 1px solid #999999;
+        }
+
+        .com4:hover {
+          background-color: #FFFFFF;
+          border: 1px solid #999999;
+        }
+
+        .fkContent {
+          float: left;
+          margin-top: 15px;
+          color: #333;
+        }
+
+        .fkrTime {
+          float: left;
+          width: 100%;
+          height: 20px;
+          line-height: 20px;
+        }
+
+        .fkName {
+          width: 80px;
+          text-align: right;
+          font-size: 14px;
+          font-weight: bold;
+        }
+
+        .fkrTime * {
+          float: left;
+        }
+
+        .fkLeft {
+          margin-left: 100px;
+        }
+
+        .zzclDiv {
+          float: left;
+          width: 100%;
+          height: 32px;
+          line-height: 30px;
+          margin-top: 15px;
+          overflow: hidden;
+        }
+
+        .showFilePanel {
+          height: 90px;
+        }
+
+        .zzclDiv div {
+          float: left;
+        }
+
+        .upLoad {
+          width: 60px;
+          height: 30px;
+          font-weight: bold;
+          background-color: #BDE9E4;
+        }
+
+        .upLoad img {
+          float: left;
+          margin-left: 5px;
+          margin-top: 8px;
+        }
+
+        .clDiv {
+          position: relative;
+          width: 90px;
+          height: 30px;
+          color: #666666;
+          margin-left: 11px;
+          margin-bottom: 5px;
+          background-color: #E9FAF9;
+          border: 1px solid #cccccc;
+          cursor: pointer;
+        }
+
+        .clDiv:hover {
+          background-color: #D8F2F0;
+
+          .clDelete {
+            display: block;
+          }
+        }
+
+        .clName {
+          width: 70px;
+          margin-left: 8px;
+          text-align: center;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+        }
+
+        .clhz {
+          max-width: 25px;
+          overflow: hidden;
+        }
+
+        // 反馈历史
+        .fklsContent {
+          width: 100%;
+          float: left;
+          color: #333;
+          position: relative;
+
+          .timeAxis {
+            float: left;
+            position: absolute;
+            width: 100%;
+            margin-top: 50px;
+            display: flex;
+            justify-content: center;
+
+            .fklsHr {
+              float: left;
+              width: 90%;
+              height: 3px;
+              margin-left: 4px;
+              margin-top: 17px;
+              background-image: linear-gradient(to right, #54C8B5, #D2F2EC);
+            }
+
+            .jtDiv {
+              float: left;
+              width: 24px;
+              font-size: 25px;
+              color: #54C8B5;
+              cursor: pointer;
+            }
+
+            .jtLf {
+              margin-left: 4px;
+              text-align: right;
+            }
+          }
+
+          .slider-panel {
+            width: 700px;
+            height: 120px;
+            margin-left: 100px;
+            overflow: auto;
+          }
+
+          .fklsItem {
+            margin-top: 30px;
+            float: left;
+            width: 135px;
+            height: 90px;
+            text-align: center;
+            display: block;
+
+            .lsName {
+              font-size: 14px;
+              color: #07bbbb;
+              font-weight: bold;
+            }
+
+            .lsdius {
+              float: left;
+              width: 14px;
+              height: 14px;
+              margin-left: 57px;
+              margin-right: 50px;
+              margin-top: 12px;
+              border-radius: 50%;
+              background: #07bbbb;
+            }
+
+            .lsdiu {
+              float: left;
+              width: 14px;
+              height: 14px;
+              border-radius: 50%;
+              background: transparent;
+              cursor: pointer;
+              border-color: transparent;
+            }
+
+            .lsTime {
+              color: #999999;
+              font-weight: bold;
+              margin-top: 10px;
+              float: left;
+              text-align: center;
+              width: 100%;
+            }
+          }
+        }
+
+        .examineDiv {
+          margin-top: 10px;
+          width: 100%;
+        }
+
+        .examContent {
+          margin-left: 45px;
+          overflow-y: auto;
+        }
+
+        .dbdj-zk {
+          width: 16px;
+          background: url(../../../img/popIcon.png) -130px 0px;
+          height: 16px;
+          margin-top: 7px;
+          cursor: pointer;
+        }
+
+        .subs2 {
+          position: absolute;
+          width: 84px;
+          height: 99px;
+          margin-top: 40px;
+          border: 1px solid #999999;
+          background-color: #ffffff;
+          z-index: 999;
+          display: none;
+        }
+
+        .subs2 div {
+          float: left;
+          width: 76px;
+          height: 24px;
+          margin-left: 4px;
+          text-align: center;
+          line-height: 24px;
+          border-bottom: 1px solid #999999;
+          cursor: pointer;
+        }
+
+        .subs2 div:hover {
+          background-color: #E9FAF9;
+        }
+
+        .fkclFiles {
+          height: 90px;
+          width: 725px;
+          overflow: hidden;
+          position: relative;
+
+          .open-panel {
+            font-size: 16px;
+            margin-left: 16px;
+            position: absolute;
+            cursor: pointer;
+          }
+        }
+
+        .dbdj-FilesDiv {
+          position: absolute;
+          margin-top: -10px;
+          margin-left: 80px;
+          width: 595px;
+          height: 144px;
+          background-color: #fff;
+          border: 1px solid #CCC;
+          box-shadow: #CCCCCC 0px 0px 10px;
+          display: none;
+        }
+
+        .filesCon {
+          width: 561px;
+          height: 144px;
+          overflow-x: hidden;
+          overflow-y: auto;
+        }
+
+        .fcHide {
+          background: url(../../../img/popIcon.png) -130px 0px;
+          transform: rotate(180deg);
+          -ms-transform: rotate(180deg);
+          -webkit-transform: rotate(180deg);
+          -o-transform: rotate(180deg);
+          -moz-transform: rotate(180deg);
+          width: 16px;
+          height: 16px;
+          margin-top: 20px;
+          margin-left: 5px;
+          cursor: pointer;
+        }
+
+        .clDelete {
+          position: absolute;
+          margin-top: 2px;
+          margin-right: 2px;
+          width: 10px;
+          height: 10px;
+          right: 0;
+          top: 0;
+          display: none;
+        }
+
+        .clDelete:hover {
+          display: block;
+        }
+
+        .filesCon>.clDiv {
+          position: relative;
+          margin-top: 12px;
+          margin-left: 14px;
+        }
+
+        .fqRows {
+          display: inline-block;
+          width: 824px;
+          height: 30px;
+          line-height: 30px;
+          font-size: 12px;
+          font-family: "Microsoft Yahei";
+          color: #333;
+        }
+
+        .fqBzRows {
+          margin-left: 28px;
+        }
+
+        .rowName {
+          float: left;
+          color: #007a72;
+          width: 144px;
+          text-align: right;
+        }
+
+        .rowVal {
+          float: left;
+          width: 243px;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+          overflow: hidden;
+        }
+
+        .tsRow {
+          width: 94px !important;
+        }
+
+        .clryVal {
+          display: inline-block;
+          width: 730px;
+          position: relative;
+
+          .open-panel {
+            position: absolute;
+            font-size: 16px;
+            top: 5px;
+            right: 35px;
+            cursor: pointer;
+          }
+        }
+
+        .bzVal {
+          overflow: hidden;
+          max-height: 200px;
+          word-break: break-all;
+        }
+
+        #fqClryVal span {
+          margin-left: 10px;
+          padding-left: 4px;
+          padding-right: 5px;
+          cursor: pointer;
+        }
+
+        #fqClryVal span:FIRST-CHILD {
+          margin-left: 0px;
+        }
+
+        .fqDjlxVal {
+          float: left;
+          width: 85px;
+        }
+
+        .dbdj-yulan {
+          float: left;
+          width: 100px;
+          margin-top: 9px;
+        }
+
+        .zwtlnr {
+          width: 100%;
+          height: 220px;
+          text-align: center;
+          line-height: 220px;
+          font-size: 22px;
+          color: #999;
+        }
+
+        .input_control input {
+          border-color: #ececec !important;
+        }
+
+        .input_control input:hover {
+          border-color: #cccccc;
+        }
+
+
+        .addClr {
+          float: left;
+          width: 16px;
+          height: 16px;
+          background-color: #BDE9E4;
+          line-height: 14px;
+          text-align: center;
+          font-size: 16px;
+          font-weight: bold;
+          margin-top: 8px;
+          cursor: pointer;
+        }
+
+        .person_panel {
+          position: absolute;
+          top: 30px;
+          left: 93px;
+          width: 640px;
+          z-index: 9999;
+          padding-top: 15px;
+          height: 430px;
+          border: 2px solid #94ded6;
+          background-color: #E9FAF9;
+          border-radius: 5px;
+
+          .clry_input {
+            display: block;
+          }
+        }
+
+        input#clryVal {
+          width: 155px;
+          height: 24px;
+          border: 0px solid;
+          margin-left: 25px;
+          padding-left: 5px;
+        }
+
+        .clry_search {
+          margin-top: 15px;
+          margin-left: 26px;
+          width: 160px;
+          height: 26px;
+          border: 1px solid #BDE9E4;
+          color: #999999;
+          font-size: 12px;
+          font-family: "Microsoft Yahei";
+        }
+
+        .sy_clry {
+          float: left;
+          margin-top: 15px;
+          margin-left: 26px;
+          width: 375px;
+          height: 310px;
+          background-color: #ffffff;
+          border: 1px solid #BDE9E4;
+        }
+
+        .dxjt {
+          float: left;
+          width: 10px;
+          height: 20px;
+          background: url(../../../img/dxjt.png) 0px 0px;
+          margin-top: 155px;
+          margin-left: 8px;
+        }
+
+        .yx_clry {
+          float: left;
+          width: 180px;
+          height: 310px;
+          background-color: #ffffff;
+          border: 1px solid #BDE9E4;
+          margin-top: 15px;
+          margin-left: 8px;
+        }
+
+        .cz_clry {
+          float: left;
+          width: 585px;
+          height: 45px;
+          margin-left: 26px;
+          margin-top: 15px;
+        }
+
+        .tc_but {
+          float: right;
+          width: 78px;
+          height: 28px;
+          line-height: 30px;
+          background-color: #ffffff;
+          text-align: center;
+          font-size: 14px;
+          border-radius: 2px;
+          border: 1px solid #BDe9e4;
+          margin-right: 12px;
+          cursor: pointer;
+        }
+
+        .wc_but {
+          float: right;
+          width: 78px;
+          height: 30px;
+          line-height: 30px;
+          background-color: #60CFBD;
+          text-align: center;
+          font-size: 14px;
+          border-radius: 2px;
+          cursor: pointer;
+        }
+
+        .sy_head {
+          width: 100%;
+          height: 34px;
+          line-height: 34px;
+          border-bottom: 2px solid #BDE9E4;
+          font-size: 12px;
+          font-weight: bold;
+        }
+
+        .clr_xm {
+          float: left;
+          width: 100px;
+          padding-left: 26px;
+        }
+
+        .clr_sj {
+          float: left;
+          width: 130px;
+        }
+
+        .clr_zw {
+          float: left;
+          width: 119px;
+        }
+
+        .sy_content {
+          float: left;
+          width: 100%;
+          height: 274px;
+          overflow-x: hidden;
+          overflow-y: auto;
+        }
+
+        .sy_line {
+          float: left;
+          width: 100%;
+          height: 34px;
+          line-height: 34px;
+          cursor: pointer;
+        }
+
+        .sy_line:hover {
+          background-color: #E9FAF9;
+        }
+
+        .xmVal {
+          float: left;
+          width: 126px;
+          height: 34px;
+        }
+
+        .isDg {
+          float: left;
+          width: 26px;
+          height: 34px;
+          text-align: center;
+          line-height: 34px;
+        }
+
+        .xmVal_txt {
+          float: left;
+          width: 80px;
+          height: 34px;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+          overflow: hidden;
+        }
+
+        .sjVal {
+          float: left;
+          width: 120px;
+          height: 34px;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+          overflow: hidden;
+        }
+
+        .zwVal {
+          float: left;
+          width: 102px;
+          height: 34px;
+          margin-left: 10px;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+          overflow: hidden;
+        }
+
+        .yx_head {
+          width: 170px;
+          height: 34px;
+          line-height: 34px;
+          border-bottom: 2px solid #BDE9E4;
+          font-size: 12px;
+          padding-left: 10px;
+          font-weight: bold;
+        }
+
+        .yx_content {
+          float: left;
+          width: 180px;
+          height: 274px;
+          overflow-x: hidden;
+          overflow-y: auto;
+        }
+
+        .yx_content div {
+          float: left;
+          width: 170px;
+          height: 34px;
+          line-height: 34px;
+          padding-left: 10px;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+          overflow: hidden;
+        }
+
+        .yx_content div:hover {
+          background-color: #E9FAF9;
+        }
+
+        .sysxclr {
+          float: right;
+          width: 16px;
+          height: 16px;
+          margin-right: 5px;
+          margin-top: 7px;
+          background: url(../../../img/popIcon.png) -130px 0px;
+          cursor: pointer;
+        }
+
+        .fqClrPanel {
+          position: absolute;
+          width: 700px;
+          max-height: 144px;
+          background-color: #fff;
+          border: 1px solid #CCC;
+          box-shadow: #CCCCCC 0px 0px 10px;
+          z-index: 999;
+          overflow: auto;
+          padding: 0px 10px 10px 0;
+
+          .panel-div {
+            position: relative;
+          }
+
+          .close-panel {
+            font-size: 16px;
+            position: absolute;
+            top: 5px;
+            right: 15px;
+            cursor: pointer;
+          }
+        }
+
+        .fqClrCon {
+          float: left;
+          width: 602px;
+          height: 144px;
+          overflow-x: hidden;
+          overflow-y: auto;
+        }
+
+        .fqClrHide {
+          float: left;
+          background: url(../../../img/popIcon.png) -130px 0px;
+          transform: rotate(180deg);
+          -ms-transform: rotate(180deg);
+          -webkit-transform: rotate(180deg);
+          -o-transform: rotate(180deg);
+          -moz-transform: rotate(180deg);
+          width: 12px;
+          height: 16px;
+          margin-top: 3px;
+          margin-left: 6px;
+          cursor: pointer;
+        }
+
+        .conItem {
+          float: left;
+          width: 138px;
+          height: 28px;
+          color: #666666;
+          margin-left: 5px;
+          margin-top: 14px;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+          overflow: hidden;
+          border: 1px solid #cccccc;
+          background-color: #E9FAF9;
+        }
+
+        // 处理人span
+        .clrSpan {
+          float: left;
+          margin-left: 15px;
+          width: 150px;
+          position: relative;
+
+          &:hover {
+            .deleteClr {
+              display: block;
+            }
+          }
+
+          .deal-person {
+            background: transparent;
+            border: none;
+            border-bottom: 1px solid #333;
+            border-radius: 0px;
+            padding: 0 15px;
+            height: 24px;
+            white-space: nowrap;
+            width: 150px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+          }
+
+          .deleteClr {
+            position: absolute;
+            right: 0px;
+            top: 5px;
+            z-index: 1001;
+            display: none;
+            cursor: pointer;
+          }
+        }
+
+        .fqdb {
+          background-color: #FAC200;
+          border: 0px solid #fff;
+        }
+
+        .fqClrCon div:LAST-CHILD {
+          margin-bottom: 14px;
+        }
+      }
+    }
+  }
+}
+
+#user-info {
+  width: 320px;
+  height: 230px;
+  background-color: #369999;
+  font-weight: bold;
+  color: #c3e1e1;
+
+  .userName {
+    float: left;
+    width: 260px;
+    height: 42px;
+    margin-left: 42px;
+    margin-top: 12px;
+    line-height: 42px;
+    font-size: 20px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .subItem {
+    float: left;
+    width: 284px;
+    height: 32px;
+    line-height: 32px;
+    margin-left: 18px;
+  }
+
+  .itemVal {
+    float: left;
+    width: 260px;
+    margin-left: 8px;
+    font-size: 14px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .itemIco {
+    float: left;
+    width: 16px;
+    height: 16px;
+    margin-top: 8px;
+    border: none;
+    background-repeat: no-repeat;
+  }
+
+  .dep {
+    background: url(../../../img/popIcon.png) 0px 0px;
+  }
+
+  .pos {
+    background: url(../../../img/popIcon.png) -16px 0px;
+  }
+
+  .eml {
+    background: url(../../../img/popIcon.png) -32px 0px;
+  }
+
+  .tph {
+    background: url(../../../img/popIcon.png) -48px 0px;
+  }
+
+  .lad {
+    background: url(../../../img/popIcon.png) -64px 0px;
+  }
+
+  .xls {
+    background: url(../../../img/popIcon.png) -80px 0px;
+  }
+
+  .xxs {
+    background: url(../../../img/popIcon.png) -96px 0px;
+  }
+}
+
+#dropout-tip {
+  .modal-content {
+    width: 400px;
+  }
+
+  .dropout-tip-content {
+    .tip-footer {
+      display: flex;
+      justify-content: flex-end;
+    }
+  }
+}

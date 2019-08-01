@@ -1,0 +1,95 @@
+.config-filters-container {
+  margin-top: 20px;
+  position: relative;
+  float: left;
+
+  .config-filters {
+    float: left;
+    min-width: 580px;
+    width: calc(~"100% - 200px");
+
+    .config-filter {
+      width: 290px;
+      height: 40px;
+      float: left;
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+
+      .filter-label {
+        font-size: 12px;
+        font-weight: 600;
+        width: 90px;
+        text-align: right;
+      }
+
+      .filter-nm-input {
+        width: 190px;
+        box-shadow: 0 -1px 0 0 #999999 inset;
+      }
+
+      .filter-sm-input {
+        width: 89px;
+        box-shadow: 0 -1px 0 0 #999999 inset;
+      }
+    }
+
+    .money-filter {
+      .money-filter-input {
+        text-align: center;
+      }
+    }
+
+    .config-sg-date-filter {
+      .datepicker-container {
+        width: 290px;
+        padding-right: 10px;
+
+        .filter-input {
+          input {
+            width: 190px;
+          }
+        }
+      }
+
+      .filter-label {
+        width: 90px;
+      }
+    }
+
+    .config-date-filter {
+      width: 290px;
+	  
+	  .datepicker-container {
+	  	width: auto;
+	  }
+      .filter-label {
+        font-size: 12px;
+        font-weight: 600;
+        width: 90px;
+        text-align: right;
+      }
+
+      .endate {
+        .filter-label {
+          width: 15px;
+        }
+      }
+    }
+  }
+
+  .config-filters-operation {
+    padding-top: 8px;
+    width: 200px;
+    float: right;
+
+    .query-btn {
+      margin: 0px 10px;
+      float: right;
+    }
+    .reset-btn {
+      margin: 0px 10px;
+      float: right;
+    }
+  }
+}

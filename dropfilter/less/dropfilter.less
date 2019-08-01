@@ -1,0 +1,60 @@
+@import "../../../less/variable";
+
+.filter-container {
+  height: 40px;
+  display: flex;
+  align-items: center;
+  .filter-label {
+    font-size: 12px;
+    font-weight: 600;
+    width: 90px;
+    text-align: right;
+  }
+  .dropdown-container {
+    // z-index: 9999;
+    padding-right: 10px;
+    .dropdown-button {
+      display: block;
+      font-size: 14px;
+      border-bottom: 1px solid #999999;
+      width: 190px;
+      cursor: pointer;
+      height: 24px;
+      line-height: 24px;
+      p {
+        width: 170px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        word-break: normal;
+        white-space: nowrap;
+      }
+      .dropfilter-mat-icon {
+        right: 14px;
+        bottom: 4px;
+      }
+    }
+    .dropdown-menu {
+      min-width: 190px;
+      border-radius: 0px;
+      .query-box {
+        margin: 0 16px;
+      }
+      .dropdown-list {
+        .select-all {
+          font-size: 12px;
+          text-align: left;
+        }
+        ul {
+          max-height: 200px;
+          overflow: auto;
+          .dropdown-item {
+            text-align: left;
+            width: 182px;
+          }
+        }
+      }
+    }
+  }
+}
+
+// 组件主题

@@ -1,0 +1,191 @@
+.dbslider-horizon-range-container {
+  height: 45px;
+  width: 165px;
+  padding: 0 15px;
+
+  .left-side-txt {
+    color: #fff;
+    position: absolute;
+    left: -20px;
+    top: 0px;
+  }
+
+  .right-side-txt {
+    color: #fff;
+    position: absolute;
+    right: -20px;
+    top: 0px;
+  }
+
+  .dbslider-range {
+    position: relative;
+    width: 150px;
+    height: 30px;
+    font-size: 0;
+    line-height: 0;
+
+    .range-box {
+      position: absolute;
+      width: 150px;
+      height: 30px;
+      top: 0px;
+      cursor: pointer;
+    }
+
+    .left-modal,
+    .right-modal {
+      position: absolute;
+      width: 0px;
+      height: 30px;
+      top: 0px;
+      background: rgba(0, 0, 0, 0.5);
+    }
+
+    .left-modal {
+      left: 0px;
+    }
+
+    .right-modal {
+      right: 0px;
+    }
+
+    .block {
+      position: absolute;
+      top: 30px;
+      cursor: pointer;
+    }
+
+    .range-left {
+      left: -15px;
+      width: 0;
+      height: 0;
+      border-bottom: 15px solid rgb(255, 255, 255);
+      border-left: 15px solid transparent;
+
+      .num-txt {
+        position: absolute;
+        color: #fff;
+        left: -50px;
+        height: 15px;
+        top: 15px;
+        line-height: 12px;
+        width: 50px;
+        text-align: right;
+      }
+    }
+
+    .range-right {
+      right: -15px;
+      width: 0;
+      height: 0;
+      border-bottom: 15px solid rgb(255, 255, 255);
+      border-right: 15px solid transparent;
+
+      .num-txt {
+        position: absolute;
+        color: #fff;
+        right: -50px;
+        height: 15px;
+        top: 15px;
+        line-height: 12px;
+        width: 50px;
+        text-align: left;
+      }
+    }
+  }
+}
+
+.dbslider-vertical-range-container {
+  width: 45px;
+  height: 165px;
+  padding: 0 15px;
+
+  .left-side-txt {
+    color: #fff;
+    position: absolute;
+    top: -20px;
+    right: 15px;
+  }
+
+  .right-side-txt {
+    color: #fff;
+    position: absolute;
+    bottom: 10px;
+    right: 15px;
+  }
+
+  .dbslider-range {
+    position: relative;
+    height: 150px;
+    width: 30px;
+    font-size: 0;
+    line-height: 0;
+
+    .range-box {
+      position: absolute;
+      height: 150px;
+      width: 30px;
+      right: 0px;
+      cursor: pointer;
+    }
+
+    .left-modal,
+    .right-modal {
+      position: absolute;
+      height: 0px;
+      width: 30px;
+      right: 0px;
+      background: rgba(0, 0, 0, 0.5);
+    }
+
+    .left-modal {
+      top: 0px;
+    }
+
+    .right-modal {
+      bottom: 0px;
+    }
+
+    .block {
+      position: absolute;
+      right: 30px;
+      cursor: pointer;
+    }
+
+    .range-left {
+      top: -15px;
+      height: 0;
+      width: 0;
+      border-bottom: 15px solid rgb(255, 255, 255);
+      border-right: 15px solid transparent;
+
+      .num-txt {
+        position: absolute;
+        color: #fff;
+        width: 100px;
+        right: 5px;
+        top: 3px;
+        line-height: 12px;
+        text-align: right;
+      }
+    }
+
+    .range-right {
+      bottom: -15px;
+      height: 0;
+      width: 0;
+      border-top: 15px solid rgb(255, 255, 255);
+      border-right: 15px solid transparent;
+
+      .num-txt {
+        position: absolute;
+        color: #fff;
+        width: 100px;
+        right: 5px;
+        line-height: 12px;
+        bottom: 5px;
+        text-align: right;
+      }
+    }
+  }
+}

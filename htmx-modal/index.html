@@ -1,0 +1,197 @@
+<!-- 融资台账明细弹出框 -->
+<div>
+    <div class="modal fade htmx-info-modal" :id="htmxModalId" tabindex="-1" role="dialog">
+        <div class="modal-dialog center-modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true" class="zjjk-font icon-cha"></span>
+                    </button>
+                    <h4 class="modal-title">融资合同全生命信息</h4>
+                </div>
+                <div class="modal-body" id="mainpage-modal-body">
+                    <!-- 合同基础信息 -->
+                    <div class="detail-baseMessage">
+                        <div class="Message-header">
+                            <div class="Message-header-title">合同基础信息</div>
+                            <div class="baseMessage-header-radio">
+                                <input type="radio" name="modalBizhong" class="header-radio-yuan" v-model="modalBizhong"
+                                    value='sum_money' @click="switchModalBizhong('sum_money')" />本位币
+                                <input type="radio" name="modalBizhong" class="header-radio-ben" v-model="modalBizhong"
+                                    value='sum_money_wb' @click="switchModalBizhong('sum_money_wb')" />原币
+                            </div>
+                        </div>
+                        <div class="Message-content">
+                            <div class="Message-content-div" v-for="(item, itemIndex) in baseMsg">
+                                <div class="Message-content-div-label">{{item.title}}:</div>
+                                <div class="Message-content-div-value" :title="item.value">
+                                    {{judgeBaseMesType(item.field_type, item.value)}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 计息信息 -->
+                    <div class="detail-intBeaMessage">
+                        <div class="Message-header">
+                            <div class="Message-header-title">计息信息</div>
+                        </div>
+                        <div class="Message-content">
+                            <!-- v-if="modalBizhong == item.moneyType || item.moneyType == ''" -->
+                            <div class="Message-content-div" v-for="(item, itemIndex) in jxInfo">
+                                <div class="Message-content-div-label">{{item.title}}:</div>
+                                <div class="Message-content-div-value" :title="item.value">
+                                    {{judgeBaseMesType(item.field_type, item.value)}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 到还款信息 -->
+                    <div class="detail-moneyMessage">
+                        <div class="Message-header" style="border-bottom-color: #cfece9">
+                            <div @click="showDkxxTab(true)" :class="{'bottomHight':showDkxx}"
+                                class="Message-header-title payMessage">到款信息
+                            </div>
+                            <div @click="showDkxxTab(false)" :class="{'bottomHight':!showDkxx}"
+                                class="Message-header-title repayMessage">还款信息
+                            </div>
+                            <div class="mat-btn mat-btn-ghost importStyle" @click="detailInfoImport()">导出</div>
+                        </div>
+                        <!-- 到还款信息切换 -->
+                        <div v-show="!showDkxx" class="moneyMessage-content">
+                            <!-- 还款信息 -->
+                            <!-- 还款表 -->
+                            <div class="moneyMessage-datatable">
+                                <div class="repay-table-head mat-table-normal stripe hover display nowrap">
+                                    <table style="width: 100%">
+                                        <thead>
+                                            <tr>
+                                                <th class="repay-table-td" style="width: 12%">序号</th>
+                                                <th class="repay-table-td" style="width: 20%">计划还款日期</th>
+                                                <th class="repay-table-td" style="width: 24%">计划还款金额</th>
+                                                <th class="repay-table-td" style="width: 20%">实际还款日期</th>
+                                                <th class="repay-table-td" style="width: 24%">实际还款金额</th>
+                                            </tr>
+                                        </thead>
+                                    </table>
+                                </div>
+                                <div class="repay-table-body  mat-table-normal stripe hover display nowrap">
+                                    <table>
+                                        <tbody>
+                                            <tr v-for="(item, itemIndex) in hthkData">
+                                                <td class="repay-table-td" style="width: 12%">{{itemIndex+1}}</td>
+                                                <td class="repay-table-td" style="width: 20%">
+                                                    {{computeHkDate(item['jhhk'])}}
+                                                </td>
+                                                <td class="repay-table-td" style="width: 24%">
+                                                    <div class="textOver" style="width: 100px">
+                                                        {{computeHkMoney(item['jhhk'])}}
+                                                    </div>
+                                                </td>
+                                                <td class="repay-table-td" style="width: 20%">
+                                                    {{computeHkDate(item['sjhk'])}}
+                                                </td>
+                                                <td class="repay-table-td" style="width: 24%">
+                                                    <div class="textOver" style="width: 100px">
+                                                        {{computeHkMoney(item['sjhk'])}}
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr v-if="hthkData.length">
+                                                <td class="repay-table-td">{{'合计'}}</td>
+                                                <td class="repay-table-td"></td>
+                                                <td class="repay-table-td">
+                                                    <div class="textOver" style="width: 100px">
+                                                        {{formateMoneyPart(sumOfdhk.sumOfjhhk)}}
+                                                    </div>
+                                                </td>
+                                                <td class="repay-table-td"></td>
+                                                <td class="repay-table-td">
+                                                    <div class="textOver" style="width: 100px">
+                                                        {{formateMoneyPart(sumOfdhk.sumOfsjhk)}}
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <!-- 还款piecharts -->
+                            <div class="moneyMessage-echarts">
+                                <div class="moneyMessage-detaileOfEcharts">
+                                    距离合同结束日期
+                                    <span>{{computeDate(esData.close_time)}}</span>天，本金余额
+                                    <span>{{formateMoneyPart(detailOfHkChart.bjye)}}</span>,
+                                    <br />未到款余额
+                                    <span>{{formateMoneyPart(detailOfHkChart.wdkMoney)}}</span>
+                                </div>
+                                <div class="moneyMessage-pieEcharts">
+                                    <div id="hkPieChart"></div>
+                                    <div id="hkPie-toolbox" style="top: -175px;left:300px;position:relative"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- 到款信息 -->
+                        <!-- 到款表 -->
+                        <div v-show="showDkxx" class="moneyMessage-content">
+                            <div class="moneyMessage-datatable">
+                                <div class="pay-table-head mat-table-normal stripe hover display nowrap">
+                                    <table>
+                                        <thead>
+                                            <tr>
+                                                <th class="xh-td">序号</th>
+                                                <th class="dkbh-td">到款编号</th>
+                                                <th class="dkje-td">到款金额</th>
+                                                <th class="dkrq-td">到款日期</th>
+                                            </tr>
+                                        </thead>
+                                    </table>
+                                </div>
+                                <div class="pay-table-body mat-table-normal stripe hover display nowrap">
+                                    <table>
+                                        <tbody>
+                                            <tr v-for="(item, itemIndex) in htdkData">
+                                                <td class="xh-td">{{itemIndex+1}}</td>
+                                                <td :title="item.dkcode" class="dkbh-td">
+                                                    <div class="textOver" style="width: 172px">{{item.dkcode}}</div>
+                                                </td>
+                                                <td :title="item.sum_money" class="dkje-td">
+                                                    <div class="textOver" style="width: 106px">{{computeHkMoney(item)}}
+                                                    </div>
+                                                </td>
+                                                <td :title="formatHkDate(item.begindate)" class="dkrq-td">
+                                                    {{formatHkDate(item.begindate)}}
+                                                </td>
+                                            </tr>
+                                            <tr v-if="htdkData.length">
+                                                <td class="xh-td">{{'合计'}}</td>
+                                                <td class="dkbh-td"></td>
+                                                <td class="dkje-td">
+                                                    <div class="textOver" style="width: 106px">
+                                                        {{formateMoneyPart(sumOfdhk.sumOfdkje)}}
+                                                    </div>
+                                                </td>
+                                                <td class="dkrq-td"></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <!-- 到款charts -->
+                            <div class="moneyMessage-echarts">
+                                <div class="moneyMessage-detaileOfEcharts">
+                                    <br />距离合同结束日期
+                                    <span>{{computeDate(esData.close_time)}}</span>天， 未到款金额
+                                    <span>{{formateMoneyPart(detailOfDkChart.wdkMoney)}}</span>
+                                </div>
+                                <div class="moneyMessage-pieEcharts">
+                                    <div id="dkPieChart"></div>
+                                    <div id="dkPie-toolbox" style="top: -175px;left:300px;position:relative"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

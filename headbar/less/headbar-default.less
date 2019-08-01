@@ -1,0 +1,142 @@
+@import "../../../less/variable";
+@import "../../../less/common";
+
+.headbar-container {
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: flex;
+  justify-content: flex-end;
+
+  .flex-item {
+    margin-right: 30px;
+    float: right;
+
+    .form-control {
+      cursor: pointer;
+      font-size: 12px;
+    }
+  }
+
+  .date-time-picker {
+    border: none;
+    width: 100px;
+    box-shadow: none;
+    background-color: transparent;
+    padding: 0px;
+    height: 24px;
+  }
+
+  .filter-label {
+    margin-right: 5px;
+  }
+
+  .select-block {
+    width: 170px;
+
+    .form-field {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      width: 160px;
+      padding-right: 10px;
+      vertical-align: middle;
+      font-family: "Microsoft YaHei";
+    }
+
+    .mat-icon {
+      right: 0px;
+      bottom: 15px;
+    }
+
+    .tree-container {
+      position: absolute;
+      min-width: 170px;
+      max-width: 300px;
+
+      .jstree-search-input {
+        height: 20px;
+        color: #000 !important;
+        margin: 0 15px;
+        width: calc(~"100% - 30px");
+      }
+
+      .search-icon {
+        color: #000 !important;
+        position: absolute;
+        top: 20px;
+        right: 15px;
+        cursor: pointer;
+
+        &:hover {
+          opacity: 1;
+        }
+      }
+
+      .org-tree-container {
+        max-height: 400px;
+        overflow: auto;
+        min-width: 170px;
+        max-width: 300px;
+      }
+
+      .jstree-disabled {
+        color: #666666;
+      }
+
+      .jstree-search {
+        font-style: normal;
+        color: #0ea093;
+      }
+    }
+  }
+
+  .date-container {
+    position: relative;
+
+    .arrow-down {
+      right: 0;
+      top: 20px;
+      pointer-events: none;
+    }
+  }
+
+  .metric-container {
+    input {
+      cursor: pointer;
+      width: 75px;
+    }
+
+    .arrow-down {
+      right: 0;
+      top: 20px;
+      pointer-events: none;
+    }
+
+    .dropdown-menu {
+      min-width: 75px;
+      width: 75px;
+      padding: 0px;
+
+      .metric-item {
+        cursor: pointer;
+
+        &:hover {
+          background-color: rgba(232, 235, 237, .5);
+        }
+      }
+
+      .selected-item {
+        background-color: #eee;
+      }
+    }
+  }
+  .date-dropdown {
+    margin-right: 10px;
+    input {
+      width: 30px;
+    }
+  }
+}
+
+// 组件主题

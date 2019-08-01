@@ -1,0 +1,46 @@
+/* font-size */
+.td-common {
+  padding: 3px 8px;
+  white-space: nowrap;
+}
+.datatable-container {
+  font-size: 12px;
+  margin-bottom: 30px;
+}
+@media (min-width: 1024px) {
+  .datatable-container {
+    font-size: 12px;
+  }
+}
+@media (min-width: 1600px) {
+  .datatable-container {
+    font-size: 14px;
+  }
+}
+.datatable-container .datatable-grid {
+  width: 1500px;
+}
+.datatable-container table.dataTable thead th,
+.datatable-container table.dataTable thead td {
+  text-align: center;
+  min-height: 40px;
+  padding: 3px 8px;
+  white-space: nowrap;
+}
+.datatable-container table.dataTable tbody td {
+  min-height: 36px;
+  padding: 3px 8px;
+  white-space: nowrap;
+}
+.datatable-container table.dataTable tbody td .text-right {
+  text-align: right;
+}
+.datatable-container table.dataTable tbody td .text-left {
+  text-align: left;
+}
+.datatable-container table.dataTable tbody .highlight {
+  background-color: antiquewhite;
+}
+.datatable-container table.dataTable tbody td.dataTables_empty {
+  top: 300px !important;
+}

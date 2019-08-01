@@ -1,0 +1,53 @@
+<div class="headbar-container">
+  <div class="flex-item organ-container">
+    <label class="filter-label">单位：</label>
+    <div v-if="organReadOnly.flag" class="organ-readonly-txt">{{organReadOnly.organName}}</div>
+    <div v-if="!organReadOnly.flag" class="select-block pr" id="headbar-organ">
+      <input class="form-field cursor-pointer filter-input" v-model="organ"
+        type="text" readonly="true" :title="organ" />
+      <i class="fa fa-angle-down arrow-down mat-icon pa"></i>
+      <div class="tree-container">
+        <input type="text" placeholder="搜索" class="jstree-search-input">
+        <i class="mat-icon ygmat-search search-icon" id="jstree-search__input-icon"></i>
+        <div class="org-tree-container"></div>
+      </div>
+    </div>
+  </div>
+  <div class="flex-item date-container">
+    <label class="filter-label">日期：</label>
+    <template v-if="choseDateType">
+      <div class="dropdown pr dib dropdown-container metric-container date-dropdown">
+        <input id="datetype-input" v-model="dateTitles[dateType]" type="text"
+          data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+          readonly>
+        <i class="fa fa-angle-down arrow-down mat-icon pa"></i>
+        <ul class="dropdown-menu" aria-labelledby="datetype-input">
+          <li v-for="typeItem in dateTypes" :key="typeItem.value">
+            <a class="metric-item" @click="dateType=typeItem.value" :class="{'selected-item':dateType==typeItem.value}">{{typeItem.title}}</a>
+          </li>
+        </ul>
+      </div>
+    </template>
+    <input id="datetimepicker" v-model="dateTime" class="form-control form-control-line date-time-picker"
+      readonly />
+    <i class="fa fa-angle-down arrow-down mat-icon pa"></i>
+  </div>
+  <div class="flex-item">
+    <label class="filter-label">计量：</label>
+    <span style="width:20px;" class="metric-only-text" v-if="metricOnly">{{metricOnly}}</span>
+    <template v-if="!metricOnly">
+      <div class="dropdown pr dib dropdown-container metric-container">
+        <input id="metric-input" v-model="metricNames[metric]" type="text"
+          data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+          readonly>
+        <i class="fa fa-angle-down arrow-down mat-icon pa"></i>
+        <ul class="dropdown-menu" aria-labelledby="metric-input">
+          <li v-for="metricItem in metricData" :key="metricItem.value">
+            <a class="metric-item" @click="metric=metricItem.value" :class="{'selected-item':metric==metricItem.value}">{{metricItem.title}}</a>
+          </li>
+        </ul>
+      </div>
+    </template>
+
+  </div>
+</div>

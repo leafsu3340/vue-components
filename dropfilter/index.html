@@ -1,0 +1,34 @@
+<div class="filter-container">
+  <label class="filter-label">{{filterTitle}}：</label>
+  <div class="dropdown pr dib dropdown-container" :id="dropId">
+    <a id="dLabel" class="dropdown-button" :title="selectedTarget.selectedNames" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      <p>{{selectedTarget.selectedNames}}</p>
+      <span class="fa fa-angle-down arrow-down dropfilter-mat-icon pa"></span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="dLabel">
+      <div class="query-box pr">
+        <input type="text" placeholder="搜索" v-model="searchWord" @keyup.enter="searchFilterItem" :style="searchWidth">
+        <a class="mat-icon-wrap pa">
+          <i class="mat-icon ygmat-search"></i>
+        </a>
+      </div>
+      <div class="dropdown-list">
+        <a v-if="(!searchWord)&&(!selectedAllFlag)" class="select-all dropdown-item nowrap" @click="selectAll(true)">全部</a>
+        <a v-if="(!searchWord)&&(selectedAllFlag)"  class="select-all dropdown-item nowrap" @click="selectAll(false)">取消全部</a>
+        <ul style="position: relative;">
+          <li class="dropdown-li" v-for="(item,itemIndex) in filterTarget" >
+            <a class="dropdown-item nowrap" :title="item[filterName]" v-if="!item.notShow" :style="dropLiWidth" @click="selectOneTarget(itemIndex, item.value)">
+              <input style="margin-right:5px;pointer-events: none;" type="checkbox" v-model="item.value">
+              {{item[filterName]}}
+            </a>
+          </li>
+          <li v-show="noSearchResult" class="dropdown-li">
+            <a class="dropdown-item nowrap">
+              无匹配的选项
+            </a>
+          </li>
+        </ul>
+      </div>
+    </ul>
+  </div>
+</div>

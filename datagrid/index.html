@@ -1,0 +1,7 @@
+<div style="position: relative;clear:both;">
+  <div v-if="bodyDataIsEmpty" class="dgNodata" :style="{'top':heightOfTableHead + 'px'}">暂无数据</div>
+  <div :id="gridContainerId" class="datagrid-container" :style="{'height':tableHeight+'px'}">
+    <table class="datagrid-grid mat-table-normal stripe hover">
+    </table>
+  </div>
+</div>
