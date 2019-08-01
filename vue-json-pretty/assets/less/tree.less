@@ -1,0 +1,38 @@
+@content-padding: 1em; /* 树内容区域缩进2个英文字符, 此处1em为1个中文字符=2个英文字符 */
+
+.vjs__tree {
+  font-family: "Monaco", "Menlo", "Consolas", "Bitstream Vera Sans Mono";
+  font-size: 14px;
+  line-height: 1.3;
+  .vjs__tree__content {
+    padding-left: @content-padding;
+    border-left: 1px dotted #ccc;
+  }
+  .vjs__tree__node {
+    cursor: pointer;
+    &:hover {
+      color: #20a0ff;
+    }
+  }
+  .vjs__not__lastIndex:after {
+    content: ",";
+  }
+  .vjs-checkbox {
+    position: absolute;
+    left: -30px;
+  }
+  .vjs__value__null {
+    color: #ff4949;
+  }
+  .vjs__value__number,
+  .vjs__value__boolean {
+    color: #1d8ce0;
+  }
+  .vjs__value__string {
+    color: #0499c7;
+    &:before,
+    &:after {
+      content: "\""
+    }
+  }
+}
